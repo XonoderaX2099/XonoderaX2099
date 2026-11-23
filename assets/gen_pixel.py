@@ -38,6 +38,7 @@ F = {
     '(': "00010 00100 01000 01000 01000 00100 00010", ')': "01000 00100 00010 00010 00010 00100 01000",
     '_': "00000 00000 00000 00000 00000 00000 11111", '#': "01010 01010 11111 01010 11111 01010 01010",
 }
+F['&'] = "01100 10010 10100 01000 10101 10010 01101"
 F['Ñ'] = "01110 00000 10001 11001 10101 10011 10001"
 F = {k: v.split() for k, v in F.items()}
 
@@ -312,34 +313,70 @@ def banner(titulo, nombre_icono):
     return svg(W, H, ''.join(p))
 
 
-def quest(num, nombre, sub, estado, area, color, stack):
-    W, H = 960, 150
+def envolver(t, maximo):
+    lineas, actual = [], ""
+    for palabra in t.split():
+        prueba = (actual + " " + palabra).strip()
+        if len(prueba) > maximo and actual:
+            lineas.append(actual)
+            actual = palabra
+        else:
+            actual = prueba
+    if actual:
+        lineas.append(actual)
+    return lineas
+
+
+def quest(num, nombre, desc, estado, area, color, stack):
+    W = 960
+    lineas = envolver(desc, 54)
+    H = 112 + len(lineas) * 24 + 40
     p = [f'<rect width="{W}" height="{H}" fill="{BG}"/>', panel(0, 0, W, H)]
     p.append(f'<rect x="2" y="2" width="8" height="{H - 4}" fill="{color}"/>')
     p.append(texto(f"PROYECTO {num:02d}", 32, 22, 2, GRIS))
     p.append(texto(nombre, 32, 46, 4, TEXTO))
-    p.append(texto(sub, 32, 86, 2, '#c9d1d9'))
-    p.append(texto(stack, 32, 114, 2, color))
-    vivo = estado == "EN PRODUCCION"
+    y = 92
+    for l in lineas:
+        p.append(texto(l, 32, y, 2, '#c9d1d9'))
+        y += 24
+    p.append(f'<rect x="32" y="{y + 4}" width="{W - 64}" height="2" fill="{BORDE}"/>')
+    p.append(texto(stack, 32, y + 20, 2, color))
+    vivo = estado == "EN PRODUCCIÓN"
     chip = '#238636' if vivo else '#1f6feb' if estado == "EN DESARROLLO" else '#6e7681'
     cw = ancho(estado, 2) + 40
     p.append(f'<rect x="{W - 28 - cw}" y="20" width="{cw}" height="28" fill="{chip}"/>')
     p.append(f'<rect class="{"blink" if vivo else ""}" x="{W - 28 - cw + 12}" y="30" width="8" height="8" fill="#ffffff"/>')
     p.append(texto(estado, W - 28 - cw + 28, 27, 2, '#ffffff'))
-    p.append(texto(area, W - 28 - ancho(area, 2), 62, 2, GRIS))
+    p.append(texto("ROL: " + area, W - 28 - ancho("ROL: " + area, 2), 62, 2, GRIS))
     return svg(W, H, ''.join(p))
 
 
 def side_quests(items):
-    W = 960
-    H = 32 + ((len(items) + 1) // 2) * 48 + 12
-    p = [f'<rect width="{W}" height="{H}" fill="{BG}"/>', panel(0, 0, W, H)]
-    for i, (nombre, stack) in enumerate(items):
-        x = 32 if i % 2 == 0 else 496
-        y = 28 + (i // 2) * 48
-        p.append(f'<rect x="{x}" y="{y + 3}" width="8" height="8" fill="{ACENTO}"/>')
-        p.append(texto(nombre, x + 22, y, 2, TEXTO))
-        p.append(texto(stack, x + 22, y + 20, 2, GRIS))
+    """Tarjetas en dos columnas: nombre, para que sirve y stack."""
+    W, cw, gap = 960, 452, 16
+    alturas = []
+    for _, desc, _, _ in items:
+        alturas.append(78 + len(envolver(desc, 34)) * 22 + 34)
+    filas = [max(alturas[i:i + 2]) for i in range(0, len(items), 2)]
+    H = sum(filas) + gap * (len(filas) - 1)
+    p = [f'<rect width="{W}" height="{H}" fill="{BG}"/>']
+    y = 0
+    for f, h in enumerate(filas):
+        for c in range(2):
+            i = f * 2 + c
+            if i >= len(items):
+                break
+            nombre, desc, stack, color = items[i]
+            x = c * (cw + 56 // 2 + 0) if c == 0 else W - cw
+            p.append(panel(x, y, cw, h))
+            p.append(f'<rect x="{x + 2}" y="{y + 2}" width="{cw - 4}" height="6" fill="{color}"/>')
+            p.append(texto(nombre, x + 24, y + 26, 3, TEXTO))
+            yy = y + 62
+            for l in envolver(desc, 34):
+                p.append(texto(l, x + 24, yy, 2, '#c9d1d9'))
+                yy += 22
+            p.append(texto(stack, x + 24, y + h - 34, 2, color))
+        y += h + gap
     return svg(W, H, ''.join(p))
 
 
@@ -365,23 +402,32 @@ def inventario(grupos):
     return svg(W, H, f'<rect width="{W}" height="{H}" fill="{BG}"/>' + panel(0, 0, W, H) + ''.join(p))
 
 
-def logros(items):
+def certificaciones(grupos):
+    """Lista por emisor: cabecera con color, y una fila por certificado con su fecha."""
     W = 960
-    filas = (len(items) + 1) // 2
-    H = 64 + filas * 34 + 16
-    p = [f'<rect width="{W}" height="{H}" fill="{BG}"/>', panel(0, 0, W, H)]
-    tot = f"{len(items)} COMPLETADAS"
-    p.append(texto("CERTIFICACIONES", 32, 24, 2, GRIS))
-    p.append(texto(tot, W - 32 - ancho(tot, 2), 24, 2, '#3fb950'))
-    p.append(f'<rect x="32" y="48" width="{W - 64}" height="2" fill="{BORDE}"/>')
-    for i, (txt, color) in enumerate(items):
-        col, fila = (0, i) if i < filas else (1, i - filas)
-        x = 32 + col * 464
-        y = 68 + fila * 34
-        filas_t, _ = ICONOS["trofeo"]
-        p.append(sprite(filas_t, {'y': color, 'b': '#484f58'}, x, y, 3))
-        p.append(texto(txt, x + 36, y + 5, 2, TEXTO))
-    return svg(W, H, ''.join(p))
+    medalla = ["..yyyy..", ".yywwyy.", "yywyyyyy", "yyyyyyyy", "yyyyyyyy", ".yyyyyy.", "..rr.rr.", ".rr...rr"]
+    p = []
+    y = 0
+    for emisor, detalle_emisor, color, items in grupos:
+        h = 96 + len(items) * 34 + 12
+        p.append(panel(0, y, W, h))
+        p.append(f'<rect x="2" y="{y + 2}" width="{W - 4}" height="68" fill="#0b1220"/>')
+        p.append(f'<rect x="2" y="{y + 2}" width="8" height="{h - 4}" fill="{color}"/>')
+        p.append(texto(emisor, 32, y + 14, 3, TEXTO))
+        p.append(texto(detalle_emisor, 32, y + 46, 2, GRIS))
+        tot = f"{len(items)} COMPLETADAS"
+        p.append(texto(tot, W - 32 - ancho(tot, 2), y + 22, 2, '#3fb950'))
+        yy = y + 90
+        for nombre, fecha in items:
+            p.append(sprite(medalla, {'y': color, 'w': '#ffffff', 'r': '#484f58'}, 32, yy, 2))
+            p.append(texto(nombre, 62, yy + 2, 2, TEXTO))
+            if fecha:
+                p.append(texto(fecha, W - 32 - ancho(fecha, 2), yy + 2, 2, GRIS))
+            p.append(f'<rect x="62" y="{yy + 26}" width="{W - 94}" height="1" fill="#21262d"/>')
+            yy += 34
+        y += h + 16
+    H = y - 16
+    return svg(W, H, f'<rect width="{W}" height="{H}" fill="{BG}"/>' + ''.join(p))
 
 
 def mapa(nodos):
@@ -480,7 +526,8 @@ DETALLES = {
         "WHATSAPP, MESSENGER, INSTAGRAM, CORREO, SMS Y LLAMADAS",
         "LEADS DESDE META ADS Y TIKTOK ADS CON FLUJOS AUTOMÁTICOS",
         "PAGOS, CATÁLOGO Y AGENDA DE RESERVAS",
-        "+20 MICROSERVICIOS .NET 9 CON GATEWAY GRAPHQL + GRPC"]),
+        "+20 MICROSERVICIOS .NET 9 CON GATEWAY GRAPHQL + GRPC",
+        "FRONTEND EN NEXT 16 + REACT 19 CON TAILWIND"]),
     6: ("PYTHONESCAPE", "APRENDE PYTHON JUGANDO: EL JUEGO QUE DESPERTÓ UN SUEÑO", AMARILLO, [
         "7 ESCENARIOS CONECTADOS CON MINIMAPA",
         "AUDIO AMBIENTAL POR HABITACIÓN",
@@ -497,25 +544,35 @@ def todo():
                               ("mapa", "ROADMAP", "mapa")]:
         salida[f"banner-{clave}.svg"] = banner(titulo, ic)
     misiones = [
-        (1, "SOFIA", "CONSULTORIO JURIDICO CON CHATBOT Y RAG", "EN PRODUCCION", "BACKEND + IA", ACENTO,
-         "NODE  EXPRESS  FASTAPI  PGVECTOR  QDRANT  OPENAI"),
-        (2, "SICOP", "GESTION DE CASOS DEL CONSULTORIO JURIDICO", "EN PRODUCCION", "FULL STACK", AZUL,
-         "NEXT 16  TYPESCRIPT  PRISMA  POSTGRES  NGINX"),
-        (3, "APP PSICOLOGIA", "SALUD MENTAL CON IA Y APP MOVIL", "COMPLETADO", "BACKEND + MOBILE", '#bc8cff',
-         "NESTJS  FLUTTER  MYSQL  REDIS  RABBITMQ"),
-        (4, "KIVO", "HISTORIAS INTERACTIVAS CON IA", "EN PRODUCCION", "FULL STACK", '#f778ba',
-         "NEXT 16  REACT 19  POSTGRES  DRIZZLE"),
-        (5, "CONNEXIA", "CRM OMNICANAL CON IA", "EN DESARROLLO", "BACKEND", '#3fb950',
-         ".NET 9  GRAPHQL  GRPC  DOCKER"),
-        (6, "PYTHONESCAPE", "JUEGO EDUCATIVO PARA APRENDER PYTHON", "COMPLETADO", "GAME DEV", AMARILLO,
-         "PYTHON  PYGAME  PYTEST"),
+        (1, "SOFIA", "CHATBOT CON IA QUE ORIENTA A LOS USUARIOS DEL CONSULTORIO JURÍDICO Y AGENDA CITAS POR CHAT.",
+         "EN PRODUCCIÓN", "BACKEND + IA", ACENTO, "NODE  EXPRESS  FASTAPI  PGVECTOR  QDRANT  OPENAI"),
+        (2, "SICOP", "GESTIONA CASOS, CITAS, DOCUMENTOS Y FIRMAS DEL CONSULTORIO JURÍDICO UNIVERSITARIO.",
+         "EN PRODUCCIÓN", "FULL STACK", AZUL, "NEXT 16  TYPESCRIPT  PRISMA  POSTGRES  NGINX"),
+        (3, "APP PSICOLOGÍA", "ACOMPAÑA A ESTUDIANTES CON UN CHATBOT EMOCIONAL Y APOYA A LOS PRACTICANTES CON UN COPILOTO CLÍNICO.",
+         "COMPLETADO", "BACKEND + MOBILE", '#bc8cff', "NESTJS  FLUTTER  MYSQL  REDIS  RABBITMQ"),
+        (4, "KIVO", "PLATAFORMA PARA CREAR PERSONAJES Y VIVIR HISTORIAS CONVERSACIONALES CON IA.",
+         "EN PRODUCCIÓN", "FULL STACK", '#f778ba', "NEXT 16  REACT 19  POSTGRES  DRIZZLE"),
+        (5, "CONNEXIA", "CRM QUE UNE WHATSAPP, REDES, CORREO Y LLAMADAS PARA GESTIONAR LEADS Y VENTAS.",
+         "EN DESARROLLO", "FULL STACK", '#3fb950', ".NET 9  GRAPHQL  GRPC  NEXT 16  REACT 19"),
+        (6, "PYTHONESCAPE", "VIDEOJUEGO EDUCATIVO PARA APRENDER PYTHON RESOLVIENDO RETOS.",
+         "COMPLETADO", "GAME DEV", AMARILLO, "PYTHON  PYGAME  PYTEST"),
     ]
     for m in misiones:
         salida[f"quest-{m[0]}.svg"] = quest(*m)
     salida["side-quests.svg"] = side_quests([
-        ("AULA INTELIGENTE", "PYTHON"), ("CITAS IUDC", "TYPESCRIPT"),
-        ("INVENTARIO IUDC", "TYPESCRIPT"), ("BOLSA DE EMPLEO", "JAVASCRIPT"),
-        ("PAGOCONTROL", "TYPESCRIPT"), ("UVETERINARIA", "PYTHON")])
+        ("AULA INTELIGENTE", "COPILOTO DE AULA POR VOZ: EL DOCENTE HABLA Y EL AULA PROYECTA, HACE QUIZZES Y TOMA ASISTENCIA.",
+         "PYTHON  FASTAPI  IA", ACENTO),
+        ("CITAS IUDC", "API REST PARA AGENDAR CITAS UNIVERSITARIAS, CON CLEAN ARCHITECTURE Y SOLID.",
+         "TS  EXPRESS  TYPEORM  POSTGRES", AZUL),
+        ("INVENTARIO IUDC", "INVENTARIO POR SEDES, FACTURAS, PROVEEDORES Y SOLICITUDES DE INSUMOS.",
+         "TS  PRISMA  POSTGRES", '#bc8cff'),
+        ("UDCTALENTO", "BOLSA DE EMPLEO PARA ESTUDIANTES Y EGRESADOS, CON ANÁLISIS DE HOJAS DE VIDA CON IA.",
+         "REACT 19  EXPRESS  PRISMA  OPENAI", '#3fb950'),
+        ("PAGOCONTROL", "CONCILIA LOS COMPROBANTES DEL CORREO CON EL EXTRACTO BANCARIO DE TESORERÍA.",
+         "TS  EXCEL  GMAIL API", AMARILLO),
+        ("UVETERINARIA", "GESTIÓN DE CLÍNICA VETERINARIA CON AUTOMATIZACIÓN DE WHATSAPP.",
+         "DJANGO  REACT  NGINX  DOCKER", '#f0883e'),
+    ])
     salida["inventory.svg"] = inventario([
         ("BACKEND", ACENTO, ["TYPESCRIPT", "NODE", "NESTJS", "EXPRESS", "PYTHON", "FASTAPI",
                              ".NET 9", "C#", "GRAPHQL", "GRPC"]),
@@ -525,14 +582,19 @@ def todo():
                                "FIREBASE", "GIT", "PLAYWRIGHT"]),
         ("IA", AMARILLO, ["OPENAI", "CLAUDE", "RAG", "AGENTES", "MCP", "CHATBOTS"]),
     ])
-    A, S, C = '#bc8cff', AZUL, '#f85149'
-    salida["achievements.svg"] = logros([
-        ("AI FLUENCY: FOUNDATIONS", A), ("AI FLUENCY FOR STUDENTS", A), ("AI FLUENCY FOR EDUCATORS", A),
-        ("AI FLUENCY FOR NONPROFITS", A), ("TEACHING AI FLUENCY", A), ("CLAUDE 101", A),
-        ("CLAUDE CODE IN ACTION", A), ("INTRO TO AGENT SKILLS", A), ("INTRO TO MCP", A),
-        ("MCP: ADVANCED TOPICS", A), ("CLAUDE + VERTEX AI", A), ("CLAUDE + AMAZON BEDROCK", A),
-        ("ARQUITECTURA DE SOFTWARE", S), ("ESTRUCTURAS DE DATOS IA", S), ("PATRONES DE DISENO", S),
-        ("FRONT-END DEVELOPMENT", S), ("CISCO LINUX ESSENTIALS", C), ("CISCO HACKER ETICO", C),
+    salida["achievements.svg"] = certificaciones([
+        ("ANTHROPIC", "IA, CLAUDE Y MODEL CONTEXT PROTOCOL", '#bc8cff', [
+            ("AI FLUENCY: FRAMEWORK & FOUNDATIONS", ""), ("AI FLUENCY FOR STUDENTS", ""),
+            ("AI FLUENCY FOR EDUCATORS", ""), ("AI FLUENCY FOR NONPROFITS", ""),
+            ("TEACHING THE AI FLUENCY FRAMEWORK", ""), ("CLAUDE 101", ""),
+            ("CLAUDE CODE IN ACTION", "MAR 2026"), ("INTRODUCTION TO AGENT SKILLS", ""),
+            ("INTRODUCTION TO MODEL CONTEXT PROTOCOL", "MAR 2026"), ("MCP: ADVANCED TOPICS", "MAR 2026"),
+            ("CLAUDE WITH GOOGLE VERTEX AI", "MAR 2026"), ("CLAUDE WITH AMAZON BEDROCK", "MAR 2026")]),
+        ("CISCO NETWORKING ACADEMY", "A TRAVÉS DE LA INSTITUCIÓN UNIVERSITARIA DE COLOMBIA", '#f85149', [
+            ("LINUX ESSENTIALS", "OCT 2026"), ("HACKER ÉTICO (ETHICAL HACKER)", "OCT 2026")]),
+        ("INGENIERÍA DE SOFTWARE", "FORMACIÓN COMPLEMENTARIA", AZUL, [
+            ("ARQUITECTURA DE SOFTWARE", ""), ("ESTRUCTURAS DE DATOS PARA IA", ""),
+            ("PATRONES DE DISEÑO", ""), ("FRONT-END DEVELOPMENT", "")]),
     ])
     salida["world-map.svg"] = mapa([("IUDC", "BACKEND + IA"), ("AI ENGINEER", "AGENTES"),
                                     ("FRONTEND", "DISENO Y UI"), ("GAME DEV", "VIDEOJUEGOS"),

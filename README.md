@@ -54,7 +54,7 @@
 
 </details>
 
-<img src="assets/quest-5.svg" width="100%" alt="Proyecto 05: Connexia, CRM omnicanal con IA, en desarrollo"/>
+<img src="assets/quest-5.svg" width="100%" alt="Proyecto 05: Connexia, CRM omnicanal con IA, en desarrollo, full stack"/>
 
 <details>
 <summary><img src="assets/ver-detalles.svg" height="34" alt="Ver detalles de Connexia"/></summary>
@@ -74,7 +74,7 @@
 
 <img src="assets/banner-side.svg" width="100%" alt="Proyectos IUDC"/>
 
-<img src="assets/side-quests.svg" width="100%" alt="Plataformas para la Institucion Universitaria de Colombia: Aula Inteligente, Citas, Inventario, Bolsa de Empleo, PagoControl y UVeterinaria"/>
+<img src="assets/side-quests.svg" width="100%" alt="Proyectos para la Institución Universitaria de Colombia: Aula Inteligente (copiloto de aula por voz), Citas IUDC (API de citas), Inventario IUDC, UDCTalento (bolsa de empleo con IA), PagoControl (conciliación de pagos de Tesorería) y UVeterinaria (gestión de clínica veterinaria)"/>
 
 <img src="assets/banner-inventario.svg" width="100%" alt="Stack"/>
 
@@ -93,7 +93,7 @@
 
 <img src="assets/banner-logros.svg" width="100%" alt="Certificaciones"/>
 
-<img src="assets/achievements.svg" width="100%" alt="18 certificaciones: 12 de Anthropic (AI Fluency, Claude, MCP), 4 de ingenieria de software y 2 de Cisco Networking Academy (Linux Essentials y Hacker Etico)"/>
+<img src="assets/achievements.svg" width="100%" alt="Certificaciones: 12 de Anthropic (AI Fluency, Claude, Agent Skills, Model Context Protocol, Vertex AI y Bedrock), 2 de Cisco Networking Academy (Linux Essentials y Hacker Ético, octubre 2026) y 4 de ingeniería de software"/>
 
 <img src="assets/banner-mapa.svg" width="100%" alt="Roadmap"/>
 
