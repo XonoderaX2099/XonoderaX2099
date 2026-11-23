@@ -5,9 +5,9 @@
 <img src="assets/hero.svg" width="100%" alt="Avatar pixel art de Sebastian Riascos. Desarrollador de software en la Institucion Universitaria de Colombia: backend, IA aplicada y microservicios"/>
 
 [![Gmail](https://img.shields.io/badge/Gmail-sebastianriascos892@gmail.com-D14836?style=for-the-badge&logo=gmail&logoColor=white&labelColor=161b22)](mailto:sebastianriascos892@gmail.com)
-[![Instagram](https://img.shields.io/badge/Instagram-@sebasnigthmare-E4405F?style=for-the-badge&logo=instagram&logoColor=white&labelColor=161b22)](https://www.instagram.com/sebasnigthmare/)
+[![Instagram](https://img.shields.io/badge/Instagram-@msebastianriascos-E4405F?style=for-the-badge&logo=instagram&logoColor=white&labelColor=161b22)](https://www.instagram.com/msebastianriascos/)
 [![Facebook](https://img.shields.io/badge/Facebook-Michael_Sebastian_Riascos-1877F2?style=for-the-badge&logo=facebook&logoColor=white&labelColor=161b22)](https://www.facebook.com/profile.php?id=100015001026041)
-[![Threads](https://img.shields.io/badge/Threads-@sebasnigthmare-000000?style=for-the-badge&logo=threads&logoColor=white&labelColor=161b22)](https://www.threads.com/@sebasnigthmare)
+[![Threads](https://img.shields.io/badge/Threads-@msebastianriascos-000000?style=for-the-badge&logo=threads&logoColor=white&labelColor=161b22)](https://www.threads.com/@msebastianriascos)
 [![GitHub](https://img.shields.io/badge/GitHub-XonoderaX2099-00BFFF?style=for-the-badge&logo=github&logoColor=white&labelColor=161b22)](https://github.com/XonoderaX2099)
 [![Colombia](https://img.shields.io/badge/Ubicación-Colombia-facc15?style=for-the-badge&labelColor=161b22)](#)
 
@@ -107,9 +107,9 @@
 <img src="assets/footer.svg" width="100%" alt="Construyamos algo juntos"/>
 
 [![Gmail](https://img.shields.io/badge/Gmail-sebastianriascos892@gmail.com-D14836?style=for-the-badge&logo=gmail&logoColor=white&labelColor=161b22)](mailto:sebastianriascos892@gmail.com)
-[![Instagram](https://img.shields.io/badge/Instagram-@sebasnigthmare-E4405F?style=for-the-badge&logo=instagram&logoColor=white&labelColor=161b22)](https://www.instagram.com/sebasnigthmare/)
+[![Instagram](https://img.shields.io/badge/Instagram-@msebastianriascos-E4405F?style=for-the-badge&logo=instagram&logoColor=white&labelColor=161b22)](https://www.instagram.com/msebastianriascos/)
 [![Facebook](https://img.shields.io/badge/Facebook-Michael_Sebastian_Riascos-1877F2?style=for-the-badge&logo=facebook&logoColor=white&labelColor=161b22)](https://www.facebook.com/profile.php?id=100015001026041)
-[![Threads](https://img.shields.io/badge/Threads-@sebasnigthmare-000000?style=for-the-badge&logo=threads&logoColor=white&labelColor=161b22)](https://www.threads.com/@sebasnigthmare)
+[![Threads](https://img.shields.io/badge/Threads-@msebastianriascos-000000?style=for-the-badge&logo=threads&logoColor=white&labelColor=161b22)](https://www.threads.com/@msebastianriascos)
 [![GitHub](https://img.shields.io/badge/GitHub-XonoderaX2099-00BFFF?style=for-the-badge&logo=github&logoColor=white&labelColor=161b22)](https://github.com/XonoderaX2099)
 
 ![](https://komarev.com/ghpvc/?username=XonoderaX2099&color=00BFFF&style=for-the-badge&label=VISITAS)
