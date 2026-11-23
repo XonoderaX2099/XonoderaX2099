@@ -103,6 +103,48 @@ BUG = [
     "kRrkkrrkkrRk", "kRrrrrrrrrRk", ".kRrrrrrrRk.", "k.kRRRRRRk.k", "..k.k..k.k..",
 ]
 
+
+# Avatar basado en la foto: cabeza rapada, gafas rectangulares, barba corta, sonrisa,
+# camiseta verde oliva con estampado y brazos tatuados.
+def _f(a, b="", c=""):
+    return a + b + c
+
+
+AVATAR = [
+    "........kkkkkkkk........",
+    "......kkhhhhhhhhkk......",
+    ".....khhhhhhhhhhhhk.....",
+    "....khhhhhhhhhhhhhhk....",
+    _f("....k", "ssssssssssssss", "k...."),
+    _f("....k", "ssssssssssssss", "k...."),
+    _f("....k", "gggggggggggggg", "k...."),
+    _f("...Sk", "gllelgssglellg", "kS..."),
+    _f("...Sk", "gllllgssgllllg", "kS..."),
+    _f("....k", "ggggggssgggggg", "k...."),
+    _f("....k", "ssesssSSssssss", "k...."),
+    _f("....k", "SssssssssssssS", "k...."),
+    _f("....k", "bsssmwwwwmsssb", "k...."),
+    _f("....k", "bbsssmmmmsssbb", "k...."),
+    _f("....k", "bbbssssssssbbb", "k...."),
+    ".....kbbbbbbbbbbbbk.....",
+    "......kkbbbbbbbbkk......",
+    "........kssssssk........",
+    "...kkttttTssssTttttkk...",
+    "..kttttttTTTTTTttttttk..",
+    _f(".k", "ttttpppppppppppptttt", "k."),
+    _f(".k", "ttttpPpnppppnpPptttt", "k."),
+    _f(".k", "ttttppPPnppnPPpptttt", "k."),
+    _f(".kiik", "tpppnpPPpnpppt", "kiik."),
+    _f(".kisk", "tppPpnppnpPppt", "ksik."),
+    _f(".kiik", "tpPPpppppppPPt", "kiik."),
+    _f(".kssk", "ttpppppppppptt", "kssk."),
+    _f("..kk.", "kttttttttttttk", ".kk.."),
+]
+assert all(len(f) == 24 for f in AVATAR), [len(f) for f in AVATAR]
+PAL_AV = {'k': '#1a1110', 'h': '#8c6b58', 's': '#e2a98a', 'S': '#c4876a', 'b': '#3b2a20', 'g': '#1f2430',
+          'l': '#9fc3d4', 'e': '#1a1110', 'w': '#ffffff', 'm': '#8a3a3a', 't': '#6f7148', 'T': '#55573a',
+          'p': '#e5e7eb', 'P': '#9ca3af', 'n': '#4ade80', 'i': '#3d4757'}
+
 ESTILO = """<style>
 .blink{animation:blink 1.1s steps(1) infinite}
 @keyframes blink{50%{opacity:0}}
@@ -188,22 +230,23 @@ def puntos(w, h):
 
 
 def hero():
-    W, H = 960, 300
+    W, H = 960, 320
     p = [f'<rect width="{W}" height="{H}" fill="{BG}"/>', puntos(W, H)]
-    p.append(panel(40, 40, 180, 220))
-    p.append(sprite(JUGADOR, PAL, 66, 56, 8))
-    p.append(sprite(ROBOT, PAL, 172, 52, 3, clase="flota"))
-    p.append(f'<rect x="42" y="226" width="176" height="32" fill="#0b1220"/>')
-    p.append(texto("XONODERAX2099", 130, 236, 2, ACENTO, centro=True))
-    x = 260
-    p.append(texto("SEBASTIAN RIASCOS", x, 56, 5, TEXTO))
-    p.append(f'<rect x="{x}" y="104" width="120" height="4" fill="{ACENTO}"/>')
-    p.append(texto("DESARROLLADOR DE SOFTWARE", x, 128, 3, ACENTO))
-    p.append(texto("EN LA INSTITUCION UNIVERSITARIA DE COLOMBIA", x, 166, 2, TEXTO))
-    p.append(texto("BACKEND  *  IA APLICADA  *  MICROSERVICIOS", x, 192, 2, GRIS))
-    p.append(texto("> STATUS: CONSTRUYENDO PLATAFORMAS CON IA", x, 236, 2, '#3fb950'))
-    cur = x + ancho("> STATUS: CONSTRUYENDO PLATAFORMAS CON IA", 2) + 8
-    p.append(f'<rect class="blink" x="{cur}" y="236" width="10" height="14" fill="#3fb950"/>')
+    p.append(panel(40, 40, 200, 248))
+    p.append(f'<rect x="42" y="42" width="196" height="212" fill="#0f2a33"/>')
+    p.append(sprite(AVATAR, PAL_AV, 56, 50, 7))
+    p.append(f'<rect x="42" y="254" width="196" height="32" fill="#0b1220"/>')
+    p.append(texto("XONODERAX2099", 140, 264, 2, ACENTO, centro=True))
+    x = 280
+    p.append(texto("SEBASTIAN RIASCOS", x, 52, 5, TEXTO))
+    p.append(f'<rect x="{x}" y="100" width="120" height="4" fill="{ACENTO}"/>')
+    p.append(texto("DESARROLLADOR DE SOFTWARE", x, 122, 3, ACENTO))
+    p.append(texto("EN LA INSTITUCION UNIVERSITARIA DE COLOMBIA", x, 160, 2, TEXTO))
+    p.append(texto("BACKEND  *  IA APLICADA  *  MICROSERVICIOS", x, 186, 2, GRIS))
+    t = "> STATUS: CONSTRUYENDO PLATAFORMAS CON IA"
+    p.append(texto(t, x, 222, 2, '#3fb950'))
+    p.append(f'<rect class="blink" x="{x + ancho(t, 2) + 8}" y="222" width="10" height="14" fill="#3fb950"/>')
+    p.append(texto("> PRESS START <", x, 262, 3, AMARILLO, clase="blink"))
     return svg(W, H, ''.join(p))
 
 

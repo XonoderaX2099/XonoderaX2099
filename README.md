@@ -2,7 +2,7 @@
 
 <div align="center">
 
-<img src="assets/hero.svg" width="100%" alt="Sebastian Riascos, software developer: backend, IA aplicada y microservicios en la Institucion Universitaria de Colombia"/>
+<img src="assets/hero.svg" width="100%" alt="Avatar pixel art de Sebastian Riascos. Desarrollador de software en la Institucion Universitaria de Colombia: backend, IA aplicada y microservicios"/>
 
 [![Gmail](https://img.shields.io/badge/Email-sebastianriascos892@gmail.com-D14836?style=for-the-badge&logo=gmail&logoColor=white&labelColor=0a0a1a)](mailto:sebastianriascos892@gmail.com)
 [![GitHub](https://img.shields.io/badge/GitHub-XonoderaX2099-00BFFF?style=for-the-badge&logo=github&logoColor=white&labelColor=0a0a1a)](https://github.com/XonoderaX2099)
