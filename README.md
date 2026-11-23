@@ -103,7 +103,11 @@
 
 <img src="assets/footer.svg" width="100%" alt="Construyamos algo juntos"/>
 
-[![Gmail](https://img.shields.io/badge/Escríbeme-D14836?style=for-the-badge&logo=gmail&logoColor=white&labelColor=0a0a1a)](mailto:sebastianriascos892@gmail.com)
+[![Gmail](https://img.shields.io/badge/Gmail-sebastianriascos892@gmail.com-D14836?style=for-the-badge&logo=gmail&logoColor=white&labelColor=161b22)](mailto:sebastianriascos892@gmail.com)
+[![Instagram](https://img.shields.io/badge/Instagram-@sebasnigthmare-E4405F?style=for-the-badge&logo=instagram&logoColor=white&labelColor=161b22)](https://www.instagram.com/sebasnigthmare/)
+[![Facebook](https://img.shields.io/badge/Facebook-Michael_Sebastian_Riascos-1877F2?style=for-the-badge&logo=facebook&logoColor=white&labelColor=161b22)](https://www.facebook.com/profile.php?id=100015001026041)
+[![Threads](https://img.shields.io/badge/Threads-@sebasnigthmare-000000?style=for-the-badge&logo=threads&logoColor=white&labelColor=161b22)](https://www.threads.com/@sebasnigthmare)
+[![GitHub](https://img.shields.io/badge/GitHub-XonoderaX2099-00BFFF?style=for-the-badge&logo=github&logoColor=white&labelColor=161b22)](https://github.com/XonoderaX2099)
 
 ![](https://komarev.com/ghpvc/?username=XonoderaX2099&color=00BFFF&style=for-the-badge&label=VISITAS)
 
