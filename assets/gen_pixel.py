@@ -198,9 +198,9 @@ def hero():
     x = 260
     p.append(texto("SEBASTIAN RIASCOS", x, 56, 5, TEXTO))
     p.append(f'<rect x="{x}" y="104" width="120" height="4" fill="{ACENTO}"/>')
-    p.append(texto("SOFTWARE DEVELOPER", x, 128, 3, ACENTO))
-    p.append(texto("BACKEND  *  IA APLICADA  *  MICROSERVICIOS", x, 168, 2, GRIS))
-    p.append(texto("INSTITUCION UNIVERSITARIA DE COLOMBIA", x, 192, 2, GRIS))
+    p.append(texto("DESARROLLADOR DE SOFTWARE", x, 128, 3, ACENTO))
+    p.append(texto("EN LA INSTITUCION UNIVERSITARIA DE COLOMBIA", x, 166, 2, TEXTO))
+    p.append(texto("BACKEND  *  IA APLICADA  *  MICROSERVICIOS", x, 192, 2, GRIS))
     p.append(texto("> STATUS: CONSTRUYENDO PLATAFORMAS CON IA", x, 236, 2, '#3fb950'))
     cur = x + ancho("> STATUS: CONSTRUYENDO PLATAFORMAS CON IA", 2) + 8
     p.append(f'<rect class="blink" x="{cur}" y="236" width="10" height="14" fill="#3fb950"/>')
@@ -221,7 +221,7 @@ def player():
     p.append(texto("PLAYER PROFILE", 32, 30, 3, TEXTO))
     p.append(texto("SAVE 01", W - 32 - ancho("SAVE 01", 2), 34, 2, GRIS))
     p.append(f'<rect x="32" y="66" width="{W - 64}" height="2" fill="{BORDE}"/>')
-    filas = [("ROL", "DESARROLLADOR DE SOFTWARE"), ("EN", "INSTITUCION UNIVERSITARIA DE COLOMBIA"),
+    filas = [("ROL", "DESARROLLADOR DE SOFTWARE"), ("TRABAJO", "INSTITUCION UNIVERSITARIA DE COLOMBIA"),
              ("ESTUDIO", "INGENIERIA DE SOFTWARE"), ("ENFOQUE", "BACKEND, IA (RAG Y AGENTES) Y MICROSERVICIOS"),
              ("META", "GAME DEVELOPMENT Y GERENCIA DE PROYECTOS"), ("UBICACION", "COLOMBIA")]
     y = 90
