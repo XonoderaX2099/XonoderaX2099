@@ -392,6 +392,12 @@ Me apasionan el diseño, el frontend y los videojuegos, y hacia allá voy.
 | 15 | 🎯 **Patrones de Diseño** | ✅ |
 | 16 | 🌐 **Front-End Development** | ✅ |
 
+### 🔴 Cisco Networking Academy
+| # | Certificación | Fecha | Estado |
+|:---:|:---|:---:|:---:|
+| 17 | 🐧 **Linux Essentials** | Oct 2026 | ✅ |
+| 18 | 🛡️ **Hacker Ético (Ethical Hacker)** | Oct 2026 | ✅ |
+
 ---
 
 <div align="center">
