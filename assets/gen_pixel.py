@@ -136,123 +136,6 @@ def estrellas(w, h, n):
     return ''.join(out)
 
 
-def hero():
-    W, H = 960, 400
-    horiz = 300
-    p = ['<defs><linearGradient id="cielo" x1="0" y1="0" x2="0" y2="1">'
-         '<stop offset="0" stop-color="#05050f"/><stop offset=".75" stop-color="#0d1b4b"/>'
-         '<stop offset="1" stop-color="#3b0764"/></linearGradient></defs>',
-         f'<rect width="{W}" height="{H}" fill="url(#cielo)"/>', estrellas(W, horiz - 20, 90)]
-    # Sol synthwave pixelado detras del horizonte, en franjas.
-    cx, r = 480, 120
-    for i, yy in enumerate(range(horiz - r, horiz, 6)):
-        dy = horiz - yy
-        if dy < 60 and i % 2:
-            continue
-        half = int((r * r - (r - (r - dy)) ** 2) ** 0.5) if dy < r else 0
-        half = int(max(0, r * r - (dy) ** 2) ** 0.5)
-        col = '#facc15' if dy > 80 else '#fb923c' if dy > 40 else '#f472b6'
-        p.append(f'<rect x="{cx - half}" y="{yy}" width="{2 * half}" height="6" fill="{col}" opacity=".45"/>')
-    # Suelo con grilla en perspectiva.
-    p.append(f'<rect x="0" y="{horiz}" width="{W}" height="{H - horiz}" fill="#0a0420"/>')
-    for k in range(-12, 13):
-        p.append(f'<line x1="{480 + k * 40}" y1="{horiz}" x2="{480 + k * 160}" y2="{H}" '
-                 f'stroke="#7c3aed" stroke-width="2" opacity=".5"/>')
-    yy, paso = horiz + 8, 6
-    while yy < H:
-        p.append(f'<rect x="0" y="{yy}" width="{W}" height="2" fill="#7c3aed" opacity=".5"/>')
-        paso += 5
-        yy += paso
-    p.append(f'<rect x="0" y="{horiz}" width="{W}" height="3" fill="#e879f9"/>')
-    # HUD
-    p.append(texto("1UP", 24, 20, 2, '#ff4d6d'))
-    p.append(texto("000042", 24, 40, 2, '#ffffff'))
-    p.append(texto("HI-SCORE", W / 2, 20, 2, '#ff4d6d', centro=True))
-    p.append(texto("2099", W / 2, 40, 2, '#ffffff', centro=True))
-    p.append(texto("STAGE", W - 24 - ancho("STAGE", 2), 20, 2, '#ff4d6d'))
-    p.append(texto("IUDC-01", W - 24 - ancho("IUDC-01", 2), 40, 2, '#ffffff'))
-    # Titulo con doble sombra.
-    t = "SEBASTIAN RIASCOS"
-    p.append(texto(t, W / 2 + 6, 86 + 6, 6, '#3b0764', centro=True))
-    p.append(texto(t, W / 2 + 3, 86 + 3, 6, '#e879f9', centro=True))
-    p.append(texto(t, W / 2, 86, 6, '#00e5ff', centro=True))
-    p.append(texto("BACKEND DEV * AI BUILDER * FUTURE GAME DEV", W / 2, 150, 2, '#bae6fd', centro=True))
-    p.append(texto("> PRESS START <", W / 2, 188, 3, '#facc15', centro=True, clase="blink"))
-    # Jugador, su companero IA y el jefe final: un bug.
-    p.append(sprite(JUGADOR, PAL, 110, horiz - 18 * 5, 5, clase="salta"))
-    p.append(sprite(ROBOT, PAL, 200, 222, 4, clase="flota"))
-    bx, by = 254, 232
-    p.append(f'<rect x="{bx}" y="{by}" width="196" height="26" fill="#ffffff"/>'
-             f'<rect x="{bx + 2}" y="{by + 2}" width="192" height="22" fill="#0a0a1a"/>'
-             f'<rect x="{bx - 6}" y="{by + 14}" width="8" height="4" fill="#ffffff"/>')
-    p.append(texto("AI: LISTO, P1!", bx + 98, by + 6, 2, '#00e5ff', centro=True))
-    p.append(sprite(BUG, PAL, 790, horiz - 10 * 6, 6, clase="salta"))
-    p.append(texto("BOSS: BUG", 776, 204, 2, '#ff4d6d'))
-    p.append('<rect x="776" y="224" width="124" height="12" fill="#ffffff"/>'
-             '<rect x="778" y="226" width="120" height="8" fill="#1f2937"/>'
-             '<rect x="778" y="226" width="30" height="8" fill="#ef4444"/>')
-    p.append(texto("(C) 2026 XONODERAX2099 * COLOMBIA", W / 2, 370, 2, '#a78bfa', centro=True))
-    return svg(W, H, ''.join(p))
-
-
-def ventana(x, y, w, h):
-    return (f'<rect x="{x}" y="{y}" width="{w}" height="{h}" fill="#ffffff"/>'
-            f'<rect x="{x + 4}" y="{y + 4}" width="{w - 8}" height="{h - 8}" fill="#0a0a1a"/>'
-            f'<rect x="{x + 8}" y="{y + 8}" width="{w - 16}" height="{h - 16}" fill="#0b1640"/>')
-
-
-def barra(x, y, valor, color):
-    out = []
-    for i in range(20):
-        lleno = i < round(valor / 5)
-        out.append(f'<rect x="{x + i * 12}" y="{y}" width="10" height="14" fill="{color if lleno else "#1e293b"}"/>')
-    return ''.join(out)
-
-
-def player():
-    W, H = 960, 500
-    p = [f'<rect width="{W}" height="{H}" fill="#05050f"/>', ventana(0, 0, W, H)]
-    p.append(texto("PLAYER STATUS", 32, 28, 3, '#facc15'))
-    p.append(texto("SAVE 01", W - 32 - ancho("SAVE 01", 2), 32, 2, '#a78bfa'))
-    p.append(f'<rect x="24" y="64" width="{W - 48}" height="4" fill="#ffffff"/>')
-    p.append(ventana(28, 86, 184, 214))
-    p.append(sprite(JUGADOR, PAL, 48, 98, 9, clase="salta"))
-    p.append(sprite(ROBOT, PAL, 168, 92, 3, clase="flota"))
-    p.append(texto("PLAYER 1", 120, 266, 3, '#00e5ff', centro=True))
-    filas = [("NAME", "SEBASTIAN RIASCOS"), ("ALIAS", "XONODERAX2099"), ("CLASS", "SOFTWARE ENGINEER"),
-             ("GUILD", "INST. UNIVERSITARIA DE COLOMBIA"), ("SPECIAL", "AI BUILDER / RAG / AGENTS"),
-             ("MAIN QUEST", "SER GAME DEVELOPER"), ("SIDE QUEST", "GERENCIA DE PROYECTOS"),
-             ("COMPANION", "AI-BOT (ONLINE)")]
-    y = 92
-    for et, val in filas:
-        p.append(texto(et, 240, y, 2, '#facc15'))
-        p.append(texto(val, 392, y, 2, '#ffffff'))
-        y += 26
-    p.append(f'<rect x="24" y="318" width="{W - 48}" height="4" fill="#ffffff"/>')
-    stats = [("BACKEND", 90, '#00e5ff'), ("FRONTEND", 78, '#38bdf8'), ("AI / RAG", 80, '#e879f9'),
-             ("DEVOPS", 75, '#84cc16'), ("GAME DEV", 55, '#facc15'), ("TEAMWORK", 85, '#fb923c')]
-    for i, (et, v, col) in enumerate(stats):
-        cx = 36 if i % 2 == 0 else 492
-        cy = 342 + (i // 2) * 32
-        p.append(texto(et, cx, cy, 2, '#ffffff'))
-        p.append(barra(cx + 120, cy - 2, v, col))
-        p.append(texto(str(v), cx + 372, cy, 2, col))
-    p.append(texto("EQUIP: TS NODE NEST REACT NEXT PYTHON .NET DOCKER", 36, 452, 2, '#bae6fd'))
-    return svg(W, H, ''.join(p))
-
-
-def footer():
-    W, H = 960, 150
-    p = [f'<rect width="{W}" height="{H}" fill="#05050f"/>', estrellas(W, H, 50)]
-    p.append(texto("CONTINUE?", W / 2 - 30, 26, 4, '#ff4d6d', centro=True))
-    for i, n in enumerate("9876543210"):
-        p.append(f'<g class="d" style="animation-delay:{i}s">'
-                 + texto(n, W / 2 - 30 + ancho("CONTINUE?", 4) / 2 + 24, 26, 4, '#ffffff') + '</g>')
-    p.append(texto("INSERT COIN", W / 2, 80, 3, '#facc15', centro=True, clase="blink"))
-    p.append(texto("THANKS FOR PLAYING", W / 2, 118, 2, '#a78bfa', centro=True))
-    return svg(W, H, ''.join(p))
-
-
 # ---------------------------------------------------------------- iconos 8x8
 ICONOS = {
     "espada": (["......ww", ".....wgw", "....wgw.", "y..wgw..", ".yyww...", "..yy....", ".y.yy...", "y...y..."],
@@ -279,151 +162,217 @@ def icono(nombre, x, y, esc, clase=""):
     return sprite(filas, pal, x, y, esc, clase)
 
 
-def banner(titulo, nombre_icono, color):
-    """Encabezado de seccion: icono + titulo pixel + linea punteada."""
-    W, H = 960, 70
-    p = [f'<rect width="{W}" height="{H}" fill="#05050f"/>', icono(nombre_icono, 16, 14, 5, "salta")]
-    p.append(texto(titulo, 76, 18, 4, '#3b0764'))
-    p.append(texto(titulo, 74, 16, 4, color))
-    x0 = 76 + ancho(titulo, 4) + 24
-    for x in range(x0, W - 16, 16):
-        p.append(f'<rect x="{x}" y="30" width="8" height="8" fill="{color}" opacity=".5"/>')
-    p.append(f'<rect x="0" y="{H - 6}" width="{W}" height="2" fill="{color}" opacity=".4"/>')
-    return svg(W, H, ''.join(p))
+
+# ---------------------------------------------------------------- paleta sobria (tono GitHub oscuro)
+BG, PANEL, BORDE = '#0d1117', '#161b22', '#30363d'
+ACENTO, AZUL, TEXTO, GRIS, AMARILLO = '#00bfff', '#58a6ff', '#e6edf3', '#8b949e', '#e3b341'
 
 
-def estrellas_dificultad(x, y, n):
+def panel(x, y, w, h, titulo=None):
+    out = (f'<rect x="{x}" y="{y}" width="{w}" height="{h}" fill="{BORDE}"/>'
+           f'<rect x="{x + 2}" y="{y + 2}" width="{w - 4}" height="{h - 4}" fill="{PANEL}"/>')
+    # esquinas en pixel, el unico guino "retro" del marco
+    for cx, cy in ((x, y), (x + w - 6, y), (x, y + h - 6), (x + w - 6, y + h - 6)):
+        out += f'<rect x="{cx}" y="{cy}" width="6" height="6" fill="{ACENTO}"/>'
+    if titulo:
+        out += texto(titulo, x + 24, y + 20, 2, GRIS)
+    return out
+
+
+def puntos(w, h):
     out = []
-    for i in range(5):
-        filas, pal = ICONOS["estrella"]
-        pal = pal if i < n else {'y': '#334155'}
-        out.append(sprite(filas, pal, x + i * 22, y, 2))
+    for x in range(12, w, 24):
+        for y in range(12, h, 24):
+            out.append(f'<rect x="{x}" y="{y}" width="2" height="2" fill="#21262d"/>')
     return ''.join(out)
 
 
-def quest(num, nombre, sub, estado, dificultad, color, stack):
-    W, H = 960, 170
-    p = [ventana(0, 0, W, H)]
-    p.append(f'<rect x="8" y="8" width="10" height="{H - 16}" fill="{color}"/>')
-    p.append(texto(f"QUEST {num:02d}", 36, 24, 2, '#facc15'))
-    p.append(texto(nombre, 36, 50, 4, color))
-    p.append(texto(sub, 36, 92, 2, '#ffffff'))
-    p.append(texto("STACK: " + stack, 36, 126, 2, '#bae6fd'))
-    hecho = estado in ("COMPLETADA", "EN PRODUCCION")
-    chip = '#16a34a' if hecho else '#0891b2'
-    cw = ancho(estado, 2) + 28
-    p.append(f'<rect x="{W - 32 - cw}" y="20" width="{cw}" height="30" fill="{chip}"/>')
-    p.append(texto(estado, W - 32 - cw + 14, 28, 2, '#ffffff', clase="" if hecho else "blink"))
-    p.append(texto("DIFICULTAD", W - 254, 72, 2, '#a78bfa'))
-    p.append(estrellas_dificultad(W - 254, 94, dificultad))
+def hero():
+    W, H = 960, 300
+    p = [f'<rect width="{W}" height="{H}" fill="{BG}"/>', puntos(W, H)]
+    p.append(panel(40, 40, 180, 220))
+    p.append(sprite(JUGADOR, PAL, 66, 56, 8))
+    p.append(sprite(ROBOT, PAL, 172, 52, 3, clase="flota"))
+    p.append(f'<rect x="42" y="226" width="176" height="32" fill="#0b1220"/>')
+    p.append(texto("XONODERAX2099", 130, 236, 2, ACENTO, centro=True))
+    x = 260
+    p.append(texto("SEBASTIAN RIASCOS", x, 56, 5, TEXTO))
+    p.append(f'<rect x="{x}" y="104" width="120" height="4" fill="{ACENTO}"/>')
+    p.append(texto("SOFTWARE DEVELOPER", x, 128, 3, ACENTO))
+    p.append(texto("BACKEND  *  IA APLICADA  *  MICROSERVICIOS", x, 168, 2, GRIS))
+    p.append(texto("INSTITUCION UNIVERSITARIA DE COLOMBIA", x, 192, 2, GRIS))
+    p.append(texto("> STATUS: CONSTRUYENDO PLATAFORMAS CON IA", x, 236, 2, '#3fb950'))
+    cur = x + ancho("> STATUS: CONSTRUYENDO PLATAFORMAS CON IA", 2) + 8
+    p.append(f'<rect class="blink" x="{cur}" y="236" width="10" height="14" fill="#3fb950"/>')
+    return svg(W, H, ''.join(p))
+
+
+def barra(x, y, valor, color):
+    out = []
+    for i in range(20):
+        lleno = i < round(valor / 5)
+        out.append(f'<rect x="{x + i * 12}" y="{y}" width="10" height="12" fill="{color if lleno else "#21262d"}"/>')
+    return ''.join(out)
+
+
+def player():
+    W, H = 960, 430
+    p = [f'<rect width="{W}" height="{H}" fill="{BG}"/>', panel(0, 0, W, H)]
+    p.append(texto("PLAYER PROFILE", 32, 30, 3, TEXTO))
+    p.append(texto("SAVE 01", W - 32 - ancho("SAVE 01", 2), 34, 2, GRIS))
+    p.append(f'<rect x="32" y="66" width="{W - 64}" height="2" fill="{BORDE}"/>')
+    filas = [("ROL", "DESARROLLADOR DE SOFTWARE"), ("EN", "INSTITUCION UNIVERSITARIA DE COLOMBIA"),
+             ("ESTUDIO", "INGENIERIA DE SOFTWARE"), ("ENFOQUE", "BACKEND, IA (RAG Y AGENTES) Y MICROSERVICIOS"),
+             ("META", "GAME DEVELOPMENT Y GERENCIA DE PROYECTOS"), ("UBICACION", "COLOMBIA")]
+    y = 90
+    for et, val in filas:
+        p.append(texto(et, 32, y, 2, AMARILLO))
+        p.append(texto(val, 190, y, 2, TEXTO))
+        y += 28
+    p.append(f'<rect x="32" y="262" width="{W - 64}" height="2" fill="{BORDE}"/>')
+    p.append(texto("STATS", 32, 282, 2, GRIS))
+    stats = [("BACKEND", 90, ACENTO), ("FRONTEND", 78, AZUL), ("IA / RAG", 80, '#bc8cff'),
+             ("DEVOPS", 75, '#3fb950'), ("GAME DEV", 55, AMARILLO), ("EQUIPO", 85, '#f0883e')]
+    for i, (et, v, col) in enumerate(stats):
+        cx = 32 if i % 2 == 0 else 492
+        cy = 312 + (i // 2) * 30
+        p.append(texto(et, cx, cy, 2, TEXTO))
+        p.append(barra(cx + 120, cy, v, col))
+        p.append(texto(str(v), cx + 372, cy, 2, col))
+    return svg(W, H, ''.join(p))
+
+
+def footer():
+    W, H = 960, 90
+    p = [f'<rect width="{W}" height="{H}" fill="{BG}"/>', puntos(W, H)]
+    t = "> CONSTRUYAMOS ALGO JUNTOS"
+    p.append(texto(t, W / 2 - 8, 30, 3, TEXTO, centro=True))
+    cur = W / 2 - 8 + ancho(t, 3) / 2 + 10
+    p.append(f'<rect class="blink" x="{cur:.0f}" y="30" width="14" height="21" fill="{ACENTO}"/>')
+    return svg(W, H, ''.join(p))
+
+
+def banner(titulo, nombre_icono):
+    W, H = 960, 56
+    p = [f'<rect width="{W}" height="{H}" fill="{BG}"/>', icono(nombre_icono, 0, 12, 4)]
+    p.append(texto(titulo, 48, 16, 3, TEXTO))
+    p.append(f'<rect x="0" y="{H - 4}" width="{W}" height="2" fill="{BORDE}"/>')
+    p.append(f'<rect x="0" y="{H - 4}" width="{48 + ancho(titulo, 3)}" height="2" fill="{ACENTO}"/>')
+    return svg(W, H, ''.join(p))
+
+
+def quest(num, nombre, sub, estado, area, color, stack):
+    W, H = 960, 150
+    p = [f'<rect width="{W}" height="{H}" fill="{BG}"/>', panel(0, 0, W, H)]
+    p.append(f'<rect x="2" y="2" width="8" height="{H - 4}" fill="{color}"/>')
+    p.append(texto(f"PROYECTO {num:02d}", 32, 22, 2, GRIS))
+    p.append(texto(nombre, 32, 46, 4, TEXTO))
+    p.append(texto(sub, 32, 86, 2, '#c9d1d9'))
+    p.append(texto(stack, 32, 114, 2, color))
+    vivo = estado == "EN PRODUCCION"
+    chip = '#238636' if vivo else '#1f6feb' if estado == "EN DESARROLLO" else '#6e7681'
+    cw = ancho(estado, 2) + 40
+    p.append(f'<rect x="{W - 28 - cw}" y="20" width="{cw}" height="28" fill="{chip}"/>')
+    p.append(f'<rect class="{"blink" if vivo else ""}" x="{W - 28 - cw + 12}" y="30" width="8" height="8" fill="#ffffff"/>')
+    p.append(texto(estado, W - 28 - cw + 28, 27, 2, '#ffffff'))
+    p.append(texto(area, W - 28 - ancho(area, 2), 62, 2, GRIS))
     return svg(W, H, ''.join(p))
 
 
 def side_quests(items):
     W = 960
-    H = 40 + ((len(items) + 1) // 2) * 46 + 16
-    p = [ventana(0, 0, W, H)]
+    H = 32 + ((len(items) + 1) // 2) * 48 + 12
+    p = [f'<rect width="{W}" height="{H}" fill="{BG}"/>', panel(0, 0, W, H)]
     for i, (nombre, stack) in enumerate(items):
         x = 32 if i % 2 == 0 else 496
-        y = 32 + (i // 2) * 46
-        p.append(icono("estrella", x, y + 2, 2))
-        p.append(texto(nombre, x + 28, y, 2, '#ffffff'))
-        p.append(texto(stack, x + 28, y + 20, 2, '#7dd3fc'))
+        y = 28 + (i // 2) * 48
+        p.append(f'<rect x="{x}" y="{y + 3}" width="8" height="8" fill="{ACENTO}"/>')
+        p.append(texto(nombre, x + 22, y, 2, TEXTO))
+        p.append(texto(stack, x + 22, y + 20, 2, GRIS))
     return svg(W, H, ''.join(p))
 
 
 def inventario(grupos):
     W = 960
     p = []
-    y = 24
+    y = 26
     for titulo, color, items in grupos:
-        p.append(texto(titulo, 32, y, 2, color))
-        y += 26
+        p.append(texto(titulo, 32, y, 2, GRIS))
+        y += 24
         x = 32
         for it in items:
             w = ancho(it, 2) + 24
             if x + w > W - 32:
-                x, y = 32, y + 44
-            p.append(f'<rect x="{x}" y="{y}" width="{w}" height="36" fill="{color}"/>'
-                     f'<rect x="{x + 2}" y="{y + 2}" width="{w - 4}" height="32" fill="#0a0a1a"/>'
-                     f'<rect x="{x + 2}" y="{y + 2}" width="{w - 4}" height="4" fill="{color}" opacity=".35"/>')
-            p.append(texto(it, x + 12, y + 12, 2, '#ffffff'))
+                x, y = 32, y + 42
+            p.append(f'<rect x="{x}" y="{y}" width="{w}" height="34" fill="{BORDE}"/>'
+                     f'<rect x="{x + 2}" y="{y + 2}" width="{w - 4}" height="30" fill="#0d1117"/>'
+                     f'<rect x="{x + 2}" y="{y + 2}" width="4" height="30" fill="{color}"/>')
+            p.append(texto(it, x + 14, y + 11, 2, TEXTO))
             x += w + 10
-        y += 58
-    H = y + 6
-    return svg(W, H, ventana(0, 0, W, H) + ''.join(p))
+        y += 56
+    H = y
+    return svg(W, H, f'<rect width="{W}" height="{H}" fill="{BG}"/>' + panel(0, 0, W, H) + ''.join(p))
 
 
 def logros(items):
     W = 960
     filas = (len(items) + 1) // 2
-    H = 76 + filas * 36 + 20
-    p = [ventana(0, 0, W, H)]
-    p.append(texto("ACHIEVEMENTS", 32, 26, 3, '#facc15'))
-    tot = f"{len(items)}/{len(items)} UNLOCKED"
-    p.append(texto(tot, W - 32 - ancho(tot, 2), 30, 2, '#84cc16'))
-    p.append(f'<rect x="24" y="60" width="{W - 48}" height="4" fill="#ffffff"/>')
+    H = 64 + filas * 34 + 16
+    p = [f'<rect width="{W}" height="{H}" fill="{BG}"/>', panel(0, 0, W, H)]
+    tot = f"{len(items)} COMPLETADAS"
+    p.append(texto("CERTIFICACIONES", 32, 24, 2, GRIS))
+    p.append(texto(tot, W - 32 - ancho(tot, 2), 24, 2, '#3fb950'))
+    p.append(f'<rect x="32" y="48" width="{W - 64}" height="2" fill="{BORDE}"/>')
     for i, (txt, color) in enumerate(items):
         col, fila = (0, i) if i < filas else (1, i - filas)
         x = 32 + col * 464
-        y = 80 + fila * 36
-        filas_t, pal = ICONOS["trofeo"]
-        p.append(sprite(filas_t, {'y': color, 'b': '#475569'}, x, y, 3))
-        p.append(texto(txt, x + 36, y + 5, 2, '#ffffff'))
+        y = 68 + fila * 34
+        filas_t, _ = ICONOS["trofeo"]
+        p.append(sprite(filas_t, {'y': color, 'b': '#484f58'}, x, y, 3))
+        p.append(texto(txt, x + 36, y + 5, 2, TEXTO))
     return svg(W, H, ''.join(p))
 
 
 def mapa(nodos):
-    W, H = 960, 280
-    p = [f'<rect width="{W}" height="{H}" fill="#052e16"/>']
-    random.seed(7)
-    for _ in range(140):
-        x, y = random.randrange(0, W, 8), random.randrange(0, H, 8)
-        p.append(f'<rect x="{x}" y="{y}" width="8" height="8" fill="{random.choice(["#14532d", "#166534", "#15803d"])}"/>')
-    paso = (W - 220) // (len(nodos) - 1)
-    pts = [(100 + i * paso, 150 + (30 if i % 2 else -10)) for i in range(len(nodos))]
+    W, H = 960, 200
+    p = [f'<rect width="{W}" height="{H}" fill="{BG}"/>', panel(0, 0, W, H)]
+    paso = (W - 240) // (len(nodos) - 1)
+    pts = [(120 + i * paso, 76) for i in range(len(nodos))]
     for (x1, y1), (x2, y2) in zip(pts, pts[1:]):
-        for t in range(0, 21):
-            x = x1 + (x2 - x1) * t / 20
-            y = y1 + (y2 - y1) * t / 20
-            if t % 2 == 0:
-                p.append(f'<rect x="{x - 4:.0f}" y="{y - 4:.0f}" width="8" height="8" fill="#fef3c7"/>')
+        for xx in range(x1 + 24, x2 - 18, 16):
+            p.append(f'<rect x="{xx}" y="{y1 - 3}" width="8" height="6" fill="{BORDE}"/>')
     for i, ((x, y), (nombre, sub)) in enumerate(zip(pts, nodos)):
-        actual = i == 0
-        col = '#facc15' if actual else '#e879f9' if i == len(nodos) - 1 else '#ffffff'
-        p.append(f'<rect x="{x - 18}" y="{y - 18}" width="36" height="36" fill="#0a0a1a"/>'
-                 f'<rect x="{x - 14}" y="{y - 14}" width="28" height="28" fill="{col}"/>')
-        p.append(texto(nombre, x, y + 30, 2, '#ffffff', centro=True))
-        p.append(texto(sub, x, y + 50, 2, '#86efac', centro=True))
+        col = ACENTO if i == 0 else PANEL
+        borde = ACENTO if i == 0 else GRIS
+        p.append(f'<rect x="{x - 16}" y="{y - 16}" width="32" height="32" fill="{borde}"/>'
+                 f'<rect x="{x - 12}" y="{y - 12}" width="24" height="24" fill="{col}"/>')
+        p.append(texto(nombre, x, y + 32, 2, TEXTO, centro=True))
+        p.append(texto(sub, x, y + 54, 2, GRIS, centro=True))
     x0, y0 = pts[0]
-    p.append(sprite(JUGADOR, PAL, x0 - 24, y0 - 84, 3, clase="salta"))
-    p.append(texto("YOU ARE HERE", x0 + 34, y0 - 66, 2, '#facc15', clase="blink"))
-    p.append(texto("WORLD MAP", W - 32 - ancho("WORLD MAP", 3), 16, 3, '#fef3c7'))
+    p.append(texto("AHORA", x0, y0 - 44, 2, ACENTO, centro=True, clase="blink"))
     return svg(W, H, ''.join(p))
 
 
 def todo():
     salida = {"hero.svg": hero(), "player.svg": player(), "footer.svg": footer()}
-    for clave, titulo, ic, col in [("perfil", "PLAYER PROFILE", "corazon", '#ff4d6d'),
-                                   ("quests", "QUEST LOG", "espada", '#00e5ff'),
-                                   ("side", "SIDE QUESTS", "pergamino", '#fef3c7'),
-                                   ("inventario", "INVENTORY", "cofre", '#facc15'),
-                                   ("logros", "ACHIEVEMENTS", "trofeo", '#facc15'),
-                                   ("mapa", "NEXT LEVELS", "mapa", '#84cc16')]:
-        salida[f"banner-{clave}.svg"] = banner(titulo, ic, col)
+    for clave, titulo, ic in [("perfil", "PERFIL", "corazon"), ("quests", "PROYECTOS", "espada"),
+                              ("side", "PROYECTOS IUDC", "pergamino"), ("inventario", "STACK", "cofre"),
+                              ("stats", "ESTADISTICAS", "rayo"), ("logros", "CERTIFICACIONES", "trofeo"),
+                              ("mapa", "ROADMAP", "mapa")]:
+        salida[f"banner-{clave}.svg"] = banner(titulo, ic)
     misiones = [
-        (1, "SOFIA", "CONSULTORIO JURIDICO CON CHATBOT Y RAG", "EN PRODUCCION", 5, '#00e5ff',
-         "NODE EXPRESS FASTAPI PGVECTOR QDRANT OPENAI"),
-        (2, "SICOP", "GESTION DE CASOS DEL CONSULTORIO JURIDICO", "EN PRODUCCION", 4, '#38bdf8',
-         "NEXT 16 TS PRISMA POSTGRES NGINX"),
-        (3, "APP PSICOLOGIA", "SALUD MENTAL CON IA Y APP MOVIL", "COMPLETADA", 5, '#e879f9',
-         "NESTJS FLUTTER MYSQL REDIS RABBITMQ"),
-        (4, "KIVO", "HISTORIAS INTERACTIVAS CON IA", "EN PRODUCCION", 4, '#f472b6',
-         "NEXT 16 REACT 19 POSTGRES DRIZZLE"),
-        (5, "CONNEXIA", "CRM OMNICANAL CON IA", "EN CURSO", 5, '#84cc16',
-         ".NET 9 GRAPHQL GRPC DOCKER"),
-        (6, "PYTHONESCAPE", "JUEGO EDUCATIVO PARA APRENDER PYTHON", "COMPLETADA", 2, '#facc15',
-         "PYTHON PYGAME PYTEST"),
+        (1, "SOFIA", "CONSULTORIO JURIDICO CON CHATBOT Y RAG", "EN PRODUCCION", "BACKEND + IA", ACENTO,
+         "NODE  EXPRESS  FASTAPI  PGVECTOR  QDRANT  OPENAI"),
+        (2, "SICOP", "GESTION DE CASOS DEL CONSULTORIO JURIDICO", "EN PRODUCCION", "FULL STACK", AZUL,
+         "NEXT 16  TYPESCRIPT  PRISMA  POSTGRES  NGINX"),
+        (3, "APP PSICOLOGIA", "SALUD MENTAL CON IA Y APP MOVIL", "COMPLETADO", "BACKEND + MOBILE", '#bc8cff',
+         "NESTJS  FLUTTER  MYSQL  REDIS  RABBITMQ"),
+        (4, "KIVO", "HISTORIAS INTERACTIVAS CON IA", "EN PRODUCCION", "FULL STACK", '#f778ba',
+         "NEXT 16  REACT 19  POSTGRES  DRIZZLE"),
+        (5, "CONNEXIA", "CRM OMNICANAL CON IA", "EN DESARROLLO", "BACKEND", '#3fb950',
+         ".NET 9  GRAPHQL  GRPC  DOCKER"),
+        (6, "PYTHONESCAPE", "JUEGO EDUCATIVO PARA APRENDER PYTHON", "COMPLETADO", "GAME DEV", AMARILLO,
+         "PYTHON  PYGAME  PYTEST"),
     ]
     for m in misiones:
         salida[f"quest-{m[0]}.svg"] = quest(*m)
@@ -432,17 +381,15 @@ def todo():
         ("INVENTARIO IUDC", "TYPESCRIPT"), ("BOLSA DE EMPLEO", "JAVASCRIPT"),
         ("PAGOCONTROL", "TYPESCRIPT"), ("UVETERINARIA", "PYTHON")])
     salida["inventory.svg"] = inventario([
-        ("WEAPONS - BACKEND", '#00e5ff', ["TYPESCRIPT", "NODE", "NESTJS", "EXPRESS", "PYTHON", "FASTAPI",
-                                          ".NET 9", "C#", "GRAPHQL", "GRPC"]),
-        ("ARMOR - FRONTEND Y MOBILE", '#38bdf8', ["REACT", "NEXT.JS", "VITE", "TAILWIND", "SHADCN",
-                                                  "FLUTTER", "DART"]),
-        ("POTIONS - DATOS", '#e879f9', ["POSTGRES", "MYSQL", "PRISMA", "DRIZZLE", "REDIS", "QDRANT",
-                                        "PGVECTOR"]),
-        ("TOOLS - DEVOPS", '#84cc16', ["DOCKER", "DOKPLOY", "RAILWAY", "NGINX", "RABBITMQ",
-                                       "GH ACTIONS", "FIREBASE", "GIT", "PLAYWRIGHT"]),
-        ("MAGIC - IA", '#facc15', ["OPENAI", "CLAUDE", "RAG", "AGENTES", "MCP", "CHATBOTS"]),
+        ("BACKEND", ACENTO, ["TYPESCRIPT", "NODE", "NESTJS", "EXPRESS", "PYTHON", "FASTAPI",
+                             ".NET 9", "C#", "GRAPHQL", "GRPC"]),
+        ("FRONTEND Y MOBILE", AZUL, ["REACT", "NEXT.JS", "VITE", "TAILWIND", "SHADCN", "FLUTTER", "DART"]),
+        ("DATOS", '#bc8cff', ["POSTGRES", "MYSQL", "PRISMA", "DRIZZLE", "REDIS", "QDRANT", "PGVECTOR"]),
+        ("DEVOPS", '#3fb950', ["DOCKER", "DOKPLOY", "RAILWAY", "NGINX", "RABBITMQ", "GH ACTIONS",
+                               "FIREBASE", "GIT", "PLAYWRIGHT"]),
+        ("IA", AMARILLO, ["OPENAI", "CLAUDE", "RAG", "AGENTES", "MCP", "CHATBOTS"]),
     ])
-    A, S, C = '#a78bfa', '#38bdf8', '#ef4444'
+    A, S, C = '#bc8cff', AZUL, '#f85149'
     salida["achievements.svg"] = logros([
         ("AI FLUENCY: FOUNDATIONS", A), ("AI FLUENCY FOR STUDENTS", A), ("AI FLUENCY FOR EDUCATORS", A),
         ("AI FLUENCY FOR NONPROFITS", A), ("TEACHING AI FLUENCY", A), ("CLAUDE 101", A),
@@ -452,7 +399,7 @@ def todo():
         ("FRONT-END DEVELOPMENT", S), ("CISCO LINUX ESSENTIALS", C), ("CISCO HACKER ETICO", C),
     ])
     salida["world-map.svg"] = mapa([("IUDC", "BACKEND + IA"), ("AI ENGINEER", "AGENTES"),
-                                    ("FRONTEND", "DISENO Y UI"), ("GAME DEV", "EL SUENO"),
+                                    ("FRONTEND", "DISENO Y UI"), ("GAME DEV", "VIDEOJUEGOS"),
                                     ("PROJECT LEAD", "GERENCIA")])
     return salida
 

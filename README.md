@@ -2,25 +2,25 @@
 
 <div align="center">
 
-<img src="assets/hero.svg" width="100%" alt="Pantalla de titulo pixel art: Sebastian Riascos, Backend Dev, AI Builder y Future Game Dev"/>
+<img src="assets/hero.svg" width="100%" alt="Sebastian Riascos, software developer: backend, IA aplicada y microservicios en la Institucion Universitaria de Colombia"/>
 
-[![Gmail](https://img.shields.io/badge/CONTACTO-sebastianriascos892@gmail.com-D14836?style=for-the-badge&logo=gmail&logoColor=white&labelColor=0a0a1a)](mailto:sebastianriascos892@gmail.com)
-[![GitHub](https://img.shields.io/badge/PLAYER-XonoderaX2099-00BFFF?style=for-the-badge&logo=github&logoColor=white&labelColor=0a0a1a)](https://github.com/XonoderaX2099)
-[![Colombia](https://img.shields.io/badge/SERVER-Colombia-facc15?style=for-the-badge&labelColor=0a0a1a)](#)
+[![Gmail](https://img.shields.io/badge/Email-sebastianriascos892@gmail.com-D14836?style=for-the-badge&logo=gmail&logoColor=white&labelColor=0a0a1a)](mailto:sebastianriascos892@gmail.com)
+[![GitHub](https://img.shields.io/badge/GitHub-XonoderaX2099-00BFFF?style=for-the-badge&logo=github&logoColor=white&labelColor=0a0a1a)](https://github.com/XonoderaX2099)
+[![Colombia](https://img.shields.io/badge/Ubicación-Colombia-facc15?style=for-the-badge&labelColor=0a0a1a)](#)
 
 </div>
 
-<img src="assets/banner-perfil.svg" width="100%" alt="Player profile"/>
+<img src="assets/banner-perfil.svg" width="100%" alt="Perfil"/>
 
-<img src="assets/player.svg" width="100%" alt="Ficha del jugador: Sebastian Riascos, ingeniero de software en la Institucion Universitaria de Colombia, especialidad IA, mision principal ser game developer"/>
+<img src="assets/player.svg" width="100%" alt="Perfil: desarrollador de software en la Institucion Universitaria de Colombia, estudiante de Ingenieria de Software, enfoque en backend, IA y microservicios, con niveles por area"/>
 
 > Desarrollador de software en la **Institución Universitaria de Colombia** y estudiante de **Ingeniería de Software**.
 > Construyo plataformas reales con IA: chatbots, sistemas para consultorios y herramientas para estudiantes.
 > Me apasionan el diseño, el frontend y los videojuegos, y hacia allá voy.
 
-<img src="assets/banner-quests.svg" width="100%" alt="Quest log"/>
+<img src="assets/banner-quests.svg" width="100%" alt="Proyectos"/>
 
-<img src="assets/quest-1.svg" width="100%" alt="Quest 01: SOFIA, consultorio juridico con chatbot y RAG, en produccion"/>
+<img src="assets/quest-1.svg" width="100%" alt="Proyecto 01: SOFIA, consultorio juridico con chatbot y RAG, en produccion"/>
 
 <details>
 <summary><b>Ver detalles de SOFIA</b></summary>
@@ -36,7 +36,7 @@ Plataforma para el consultorio jurídico universitario con chatbot web, IA/RAG y
 
 </details>
 
-<img src="assets/quest-2.svg" width="100%" alt="Quest 02: SICOP, gestion de casos del consultorio juridico, en produccion"/>
+<img src="assets/quest-2.svg" width="100%" alt="Proyecto 02: SICOP, gestion de casos del consultorio juridico, en produccion"/>
 
 <details>
 <summary><b>Ver detalles de SICOP</b></summary>
@@ -52,7 +52,7 @@ Sistema administrativo para consultorios jurídicos universitarios: casos, citas
 
 </details>
 
-<img src="assets/quest-3.svg" width="100%" alt="Quest 03: App Psicologia, salud mental con IA y app movil, completada"/>
+<img src="assets/quest-3.svg" width="100%" alt="Proyecto 03: App Psicologia, salud mental con IA y app movil, completado"/>
 
 <details>
 <summary><b>Ver detalles de App Psicología IUDC</b></summary>
@@ -67,7 +67,7 @@ Sistema de salud mental universitaria: chatbot emocional con IA, copiloto clíni
 
 </details>
 
-<img src="assets/quest-4.svg" width="100%" alt="Quest 04: Kivo, historias interactivas con IA, en produccion"/>
+<img src="assets/quest-4.svg" width="100%" alt="Proyecto 04: Kivo, historias interactivas con IA, en produccion"/>
 
 <details>
 <summary><b>Ver detalles de Kivo</b></summary>
@@ -81,7 +81,7 @@ Plataforma web para crear personajes y vivir historias conversacionales con IA, 
 
 </details>
 
-<img src="assets/quest-5.svg" width="100%" alt="Quest 05: Connexia, CRM omnicanal con IA, en curso"/>
+<img src="assets/quest-5.svg" width="100%" alt="Proyecto 05: Connexia, CRM omnicanal con IA, en desarrollo"/>
 
 <details>
 <summary><b>Ver detalles de Connexia</b></summary>
@@ -95,7 +95,7 @@ CRM que reúne en un solo lugar los mensajes, leads y ventas de un negocio.
 
 </details>
 
-<img src="assets/quest-6.svg" width="100%" alt="Quest 06: PythonEscape, juego educativo para aprender Python, completada"/>
+<img src="assets/quest-6.svg" width="100%" alt="Proyecto 06: PythonEscape, juego educativo para aprender Python, completado"/>
 
 <details>
 <summary><b>Ver detalles de PythonEscape</b></summary>
@@ -107,28 +107,39 @@ Aprende Python jugando. El videojuego que despertó un gran sueño.
 
 </details>
 
-<img src="assets/banner-side.svg" width="100%" alt="Side quests"/>
+<img src="assets/banner-side.svg" width="100%" alt="Proyectos IUDC"/>
 
 <img src="assets/side-quests.svg" width="100%" alt="Plataformas para la Institucion Universitaria de Colombia: Aula Inteligente, Citas, Inventario, Bolsa de Empleo, PagoControl y UVeterinaria"/>
 
-<img src="assets/banner-inventario.svg" width="100%" alt="Inventory"/>
+<img src="assets/banner-inventario.svg" width="100%" alt="Stack"/>
 
-<img src="assets/inventory.svg" width="100%" alt="Inventario de tecnologias: backend, frontend y mobile, datos, devops e IA"/>
+<img src="assets/inventory.svg" width="100%" alt="Stack de tecnologias: backend, frontend y mobile, datos, devops e IA"/>
 
-<img src="assets/banner-logros.svg" width="100%" alt="Achievements"/>
+<img src="assets/banner-stats.svg" width="100%" alt="Estadisticas"/>
+
+<div align="center">
+
+<img height="170" src="https://github-readme-stats.vercel.app/api?username=XonoderaX2099&show_icons=true&theme=tokyonight&include_all_commits=true&count_private=true&hide_border=true&bg_color=0d1117&title_color=00BFFF&icon_color=58a6ff&text_color=c9d1d9&ring_color=00BFFF&cache_seconds=1800" alt="Estadisticas de GitHub"/>
+<img height="170" src="https://github-readme-stats.vercel.app/api/top-langs/?username=XonoderaX2099&layout=compact&langs_count=8&theme=tokyonight&hide_border=true&bg_color=0d1117&title_color=00BFFF&text_color=c9d1d9&cache_seconds=1800" alt="Lenguajes mas usados"/>
+
+<img src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=XonoderaX2099&theme=github_dark" width="100%" alt="Resumen de actividad en GitHub"/>
+
+</div>
+
+<img src="assets/banner-logros.svg" width="100%" alt="Certificaciones"/>
 
 <img src="assets/achievements.svg" width="100%" alt="18 certificaciones: 12 de Anthropic (AI Fluency, Claude, MCP), 4 de ingenieria de software y 2 de Cisco Networking Academy (Linux Essentials y Hacker Etico)"/>
 
-<img src="assets/banner-mapa.svg" width="100%" alt="Next levels"/>
+<img src="assets/banner-mapa.svg" width="100%" alt="Roadmap"/>
 
 <img src="assets/world-map.svg" width="100%" alt="Mapa de ruta: IUDC backend e IA, AI engineer, frontend, game dev y project lead"/>
 
 <div align="center">
 
-<img src="assets/footer.svg" width="100%" alt="Continue? Insert coin. Thanks for playing"/>
+<img src="assets/footer.svg" width="100%" alt="Construyamos algo juntos"/>
 
-[![Gmail](https://img.shields.io/badge/PRESS_A_TO_CONTACT-D14836?style=for-the-badge&logo=gmail&logoColor=white&labelColor=0a0a1a)](mailto:sebastianriascos892@gmail.com)
+[![Gmail](https://img.shields.io/badge/Escríbeme-D14836?style=for-the-badge&logo=gmail&logoColor=white&labelColor=0a0a1a)](mailto:sebastianriascos892@gmail.com)
 
-![](https://komarev.com/ghpvc/?username=XonoderaX2099&color=00BFFF&style=for-the-badge&label=PLAYERS+VISITED)
+![](https://komarev.com/ghpvc/?username=XonoderaX2099&color=00BFFF&style=for-the-badge&label=VISITAS)
 
 </div>
