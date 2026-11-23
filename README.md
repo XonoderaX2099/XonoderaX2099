@@ -226,6 +226,55 @@
 
 ---
 
+### `[QUEST 5]` 📖 Kivo — Historias interactivas con IA
+> ![](https://img.shields.io/badge/🚀_EN_PRODUCCIÓN-00FF7F?style=flat-square&labelColor=0a0a1a) &nbsp; ![](https://img.shields.io/badge/DIFICULTAD-HARD-FFD700?style=flat-square&labelColor=0a0a1a)
+
+**Plataforma web para crear personajes y vivir historias conversacionales con IA, instalable como PWA.**
+
+- 🎭 Creador de personajes por pasos, con personajes secundarios y tarjetas de lore
+- 💬 Chat narrativo con memoria, voces de narración y ramas de la historia
+- 🔐 Autenticación con Google y verificación por código, Postgres con Row Level Security
+- 🌐 Internacionalización, catálogo con búsqueda y moderación
+
+![Next.js](https://img.shields.io/badge/Next.js_16-000000?style=for-the-badge&logo=next.js&logoColor=white)
+![React](https://img.shields.io/badge/React_19-61DAFB?style=for-the-badge&logo=react&logoColor=black)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)
+![Drizzle](https://img.shields.io/badge/Drizzle_ORM-C5F74F?style=for-the-badge&logo=drizzle&logoColor=black)
+
+---
+
+### `[QUEST 6]` 📡 Connexia — CRM omnicanal con IA
+> ![](https://img.shields.io/badge/⚙️_EN_DESARROLLO-00BFFF?style=flat-square&labelColor=0a0a1a) &nbsp; ![](https://img.shields.io/badge/DIFICULTAD-LEGENDARY-BF00FF?style=flat-square&labelColor=0a0a1a) &nbsp; ![](https://img.shields.io/badge/MICROSERVICIOS-20+-00BFFF?style=flat-square&labelColor=0a0a1a)
+
+**CRM que reúne en un solo lugar los mensajes, leads y ventas de un negocio.**
+
+- 💬 Canales: WhatsApp, Messenger, Instagram, correo, SMS y llamadas
+- 📈 Captura de leads desde Meta Ads y TikTok Ads, con flujos automáticos
+- 💳 Pagos, catálogo y agenda de reservas
+- 🏗️ Microservicios .NET 9 con gateway GraphQL + gRPC
+
+![.NET](https://img.shields.io/badge/.NET_9-512BD4?style=for-the-badge&logo=dotnet&logoColor=white)
+![C#](https://img.shields.io/badge/C%23-239120?style=for-the-badge&logo=csharp&logoColor=white)
+![GraphQL](https://img.shields.io/badge/GraphQL-E10098?style=for-the-badge&logo=graphql&logoColor=white)
+![gRPC](https://img.shields.io/badge/gRPC-244c5a?style=for-the-badge)
+![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
+
+---
+
+### `[SIDE QUESTS]` 🏫 Plataformas para la Institución Universitaria de Colombia
+
+| Proyecto | Para qué sirve | Stack |
+|:---|:---|:---|
+| **Aula Inteligente** | Herramientas de IA para el aula | Python |
+| **Citas Universitaria de Colombia** | Agendamiento de citas | TypeScript |
+| **Inventario IUDC** | Inventario institucional | TypeScript |
+| **Bolsa de Empleo** | Ofertas laborales para estudiantes y egresados | JavaScript |
+| **PagoControl** | Control de pagos | TypeScript |
+| **UVeterinaria** | Gestión para clínica veterinaria | Python |
+
+---
+
 ## 💻 TECH STACK — ARSENAL COMPLETO
 
 <div align="center">
