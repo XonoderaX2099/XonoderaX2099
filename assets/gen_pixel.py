@@ -592,6 +592,9 @@ def todo():
             ("CLAUDE WITH GOOGLE VERTEX AI", "MAR 2026"), ("CLAUDE WITH AMAZON BEDROCK", "MAR 2026")]),
         ("CISCO NETWORKING ACADEMY", "A TRAVÉS DE LA INSTITUCIÓN UNIVERSITARIA DE COLOMBIA", '#f85149', [
             ("LINUX ESSENTIALS", "OCT 2026"), ("HACKER ÉTICO (ETHICAL HACKER)", "OCT 2026")]),
+        ("INGENIERÍA DE SOFTWARE", "FORMACIÓN COMPLEMENTARIA", AZUL, [
+            ("ARQUITECTURA DE SOFTWARE", ""), ("ESTRUCTURAS DE DATOS PARA IA", ""),
+            ("PATRONES DE DISEÑO", ""), ("FRONT-END DEVELOPMENT", "")]),
     ])
     salida["world-map.svg"] = mapa([("IUDC", "BACKEND + IA"), ("AI ENGINEER", "AGENTES"),
                                     ("FRONTEND", "DISENO Y UI"), ("GAME DEV", "VIDEOJUEGOS"),
