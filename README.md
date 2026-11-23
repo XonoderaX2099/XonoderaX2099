@@ -14,96 +14,61 @@
 
 <img src="assets/player.svg" width="100%" alt="Perfil: desarrollador de software en la Institucion Universitaria de Colombia, estudiante de Ingenieria de Software, enfoque en backend, IA y microservicios, con niveles por area"/>
 
-> Desarrollador de software en la **Institución Universitaria de Colombia** y estudiante de **Ingeniería de Software**.
-> Construyo plataformas reales con IA: chatbots, sistemas para consultorios y herramientas para estudiantes.
-> Me apasionan el diseño, el frontend y los videojuegos, y hacia allá voy.
+<img src="assets/bio.svg" width="100%" alt="Desarrollador de software en la Institución Universitaria de Colombia y estudiante de Ingeniería de Software. Construyo plataformas reales con IA: chatbots, sistemas para consultorios y herramientas para estudiantes. Me apasionan el diseño, el frontend y los videojuegos, y hacia allá voy."/>
 
 <img src="assets/banner-quests.svg" width="100%" alt="Proyectos"/>
 
 <img src="assets/quest-1.svg" width="100%" alt="Proyecto 01: SOFIA, consultorio juridico con chatbot y RAG, en produccion"/>
 
 <details>
-<summary><b>Ver detalles de SOFIA</b></summary>
+<summary><img src="assets/ver-detalles.svg" height="34" alt="Ver detalles de SOFIA"/></summary>
 
-Plataforma para el consultorio jurídico universitario con chatbot web, IA/RAG y agendamiento conversacional.
-
-- Chatbot web con IA conversacional multiestado
-- RAG con OpenAI: búsqueda semántica, re-ranking y generación
-- Agendamiento completo por chat
-- Multi-tenancy con aislamiento por `tenantId`
-- Dashboard con métricas y exportación PDF/Excel
-- 6 microservicios Node.js/Express + 1 Python FastAPI · PostgreSQL + pgvector + Qdrant · Railway
+<img src="assets/detalle-1.svg" width="100%" alt="Plataforma para el consultorio jurídico universitario con chatbot web, IA/RAG y agendamiento conversacional. Chatbot web con IA conversacional multiestado RAG con OpenAI: búsqueda semántica, re-ranking y generación Agendamiento completo por chat Multi-tenancy con aislamiento por tenantId Dashboard con métricas y exportación PDF/Excel 6 microservicios Node.js/Express + 1 Python FastAPI · PostgreSQL + pgvector + Qdrant · Railway"/>
 
 </details>
 
 <img src="assets/quest-2.svg" width="100%" alt="Proyecto 02: SICOP, gestion de casos del consultorio juridico, en produccion"/>
 
 <details>
-<summary><b>Ver detalles de SICOP</b></summary>
+<summary><img src="assets/ver-detalles.svg" height="34" alt="Ver detalles de SICOP"/></summary>
 
-Sistema administrativo para consultorios jurídicos universitarios: casos, citas, documentos y certificaciones.
-
-- RBAC con 6 roles y JWT con refresh tokens
-- PDFs con verificación por QR
-- Flujo de firmas multirol ordenado por jerarquía
-- Recordatorios automáticos 24 h y 15 min antes
-- Ciclo de vida de casos con semáforo de plazos y auditoría completa
-- Integración SOFIA ↔ SICOP
+<img src="assets/detalle-2.svg" width="100%" alt="Sistema administrativo para consultorios jurídicos universitarios: casos, citas, documentos y certificaciones. RBAC con 6 roles y JWT con refresh tokens PDFs con verificación por QR Flujo de firmas multirol ordenado por jerarquía Recordatorios automáticos 24 h y 15 min antes Ciclo de vida de casos con semáforo de plazos y auditoría completa Integración SOFIA ↔ SICOP"/>
 
 </details>
 
 <img src="assets/quest-3.svg" width="100%" alt="Proyecto 03: App Psicologia, salud mental con IA y app movil, completado"/>
 
 <details>
-<summary><b>Ver detalles de App Psicología IUDC</b></summary>
+<summary><img src="assets/ver-detalles.svg" height="34" alt="Ver detalles de App Psicología IUDC"/></summary>
 
-Sistema de salud mental universitaria: chatbot emocional con IA, copiloto clínico y app móvil.
-
-- Chatbot emocional con GPT-4o-mini + RAG
-- Copiloto clínico para practicantes de psicología
-- App Flutter con Google Sign-In (Android, iOS y web)
-- Push notifications con Firebase y mensajería asíncrona con RabbitMQ
-- Más de 10 microservicios NestJS · MySQL + Redis + MinIO · tests con Jest, Vitest y Playwright
+<img src="assets/detalle-3.svg" width="100%" alt="Sistema de salud mental universitaria: chatbot emocional con IA, copiloto clínico y app móvil. Chatbot emocional con GPT-4o-mini + RAG Copiloto clínico para practicantes de psicología App Flutter con Google Sign-In (Android, iOS y web) Push notifications con Firebase y mensajería asíncrona con RabbitMQ Más de 10 microservicios NestJS · MySQL + Redis + MinIO · tests con Jest, Vitest y Playwright"/>
 
 </details>
 
 <img src="assets/quest-4.svg" width="100%" alt="Proyecto 04: Kivo, historias interactivas con IA, en produccion"/>
 
 <details>
-<summary><b>Ver detalles de Kivo</b></summary>
+<summary><img src="assets/ver-detalles.svg" height="34" alt="Ver detalles de Kivo"/></summary>
 
-Plataforma web para crear personajes y vivir historias conversacionales con IA, instalable como PWA.
-
-- Creador de personajes por pasos, con personajes secundarios y tarjetas de lore
-- Chat narrativo con memoria, voces de narración y ramas de la historia
-- Login con Google y verificación por código · Postgres con Row Level Security
-- Internacionalización, catálogo con búsqueda y moderación
+<img src="assets/detalle-4.svg" width="100%" alt="Plataforma web para crear personajes y vivir historias conversacionales con IA, instalable como PWA. Creador de personajes por pasos, con personajes secundarios y tarjetas de lore Chat narrativo con memoria, voces de narración y ramas de la historia Login con Google y verificación por código · Postgres con Row Level Security Internacionalización, catálogo con búsqueda y moderación"/>
 
 </details>
 
 <img src="assets/quest-5.svg" width="100%" alt="Proyecto 05: Connexia, CRM omnicanal con IA, en desarrollo"/>
 
 <details>
-<summary><b>Ver detalles de Connexia</b></summary>
+<summary><img src="assets/ver-detalles.svg" height="34" alt="Ver detalles de Connexia"/></summary>
 
-CRM que reúne en un solo lugar los mensajes, leads y ventas de un negocio.
-
-- Canales: WhatsApp, Messenger, Instagram, correo, SMS y llamadas
-- Captura de leads desde Meta Ads y TikTok Ads, con flujos automáticos
-- Pagos, catálogo y agenda de reservas
-- Más de 20 microservicios .NET 9 con gateway GraphQL + gRPC
+<img src="assets/detalle-5.svg" width="100%" alt="CRM que reúne en un solo lugar los mensajes, leads y ventas de un negocio. Canales: WhatsApp, Messenger, Instagram, correo, SMS y llamadas Captura de leads desde Meta Ads y TikTok Ads, con flujos automáticos Pagos, catálogo y agenda de reservas Más de 20 microservicios .NET 9 con gateway GraphQL + gRPC"/>
 
 </details>
 
 <img src="assets/quest-6.svg" width="100%" alt="Proyecto 06: PythonEscape, juego educativo para aprender Python, completado"/>
 
 <details>
-<summary><b>Ver detalles de PythonEscape</b></summary>
+<summary><img src="assets/ver-detalles.svg" height="34" alt="Ver detalles de PythonEscape"/></summary>
 
-Aprende Python jugando. El videojuego que despertó un gran sueño.
-
-- 7 escenarios conectados con minimapa y audio ambiental por habitación
-- Pygame con física y colisiones · tests con pytest · arquitectura SOLID
+<img src="assets/detalle-6.svg" width="100%" alt="Aprende Python jugando. El videojuego que despertó un gran sueño. 7 escenarios conectados con minimapa y audio ambiental por habitación Pygame con física y colisiones · tests con pytest · arquitectura SOLID"/>
 
 </details>
 

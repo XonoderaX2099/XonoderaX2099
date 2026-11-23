@@ -5,6 +5,7 @@ Todo es SVG con rects: sin fuentes externas, asi GitHub lo muestra igual en cual
 """
 import os
 import random
+import unicodedata
 
 AQUI = os.path.dirname(os.path.abspath(__file__))
 random.seed(2099)
@@ -37,11 +38,18 @@ F = {
     '(': "00010 00100 01000 01000 01000 00100 00010", ')': "01000 00100 00010 00010 00010 00100 01000",
     '_': "00000 00000 00000 00000 00000 00000 11111", '#': "01010 01010 11111 01010 11111 01010 01010",
 }
+F['Ñ'] = "01110 00000 10001 11001 10101 10011 10001"
 F = {k: v.split() for k, v in F.items()}
 
 
+def _limpio(s):
+    s = s.upper().replace('Ñ', '~')
+    s = ''.join(c for c in unicodedata.normalize('NFD', s) if unicodedata.category(c) != 'Mn')
+    return s.replace('~', 'Ñ')
+
+
 def ancho(s, esc):
-    return (len(s) * 6 - 1) * esc
+    return (len(_limpio(s)) * 6 - 1) * esc
 
 
 def texto(s, x, y, esc, color, centro=False, clase=""):
@@ -49,7 +57,7 @@ def texto(s, x, y, esc, color, centro=False, clase=""):
     if centro:
         x = x - ancho(s, esc) / 2
     rs = []
-    for i, ch in enumerate(s.upper()):
+    for i, ch in enumerate(_limpio(s)):
         g = F.get(ch, F['?'])
         for fy, fila in enumerate(g):
             fx = 0
@@ -396,6 +404,91 @@ def mapa(nodos):
     return svg(W, H, ''.join(p))
 
 
+
+def detalle(titulo, desc, puntos_, color):
+    """Ficha de detalle de un proyecto, como pantalla de descripcion de mision."""
+    W = 960
+    H = 96 + len(puntos_) * 30 + 20
+    p = [f'<rect width="{W}" height="{H}" fill="{BG}"/>', panel(0, 0, W, H)]
+    p.append(f'<rect x="2" y="2" width="8" height="{H - 4}" fill="{color}"/>')
+    p.append(texto("DETALLES / " + titulo, 32, 22, 2, GRIS))
+    p.append(texto(desc, 32, 50, 2, TEXTO))
+    p.append(f'<rect x="32" y="80" width="{W - 64}" height="2" fill="{BORDE}"/>')
+    y = 98
+    for t in puntos_:
+        p.append(f'<rect x="32" y="{y + 3}" width="8" height="8" fill="{color}"/>')
+        p.append(texto(t, 54, y, 2, '#c9d1d9'))
+        y += 30
+    return svg(W, H, ''.join(p))
+
+
+def boton_detalles():
+    W, H = 228, 40
+    p = [f'<rect width="{W}" height="{H}" fill="{BORDE}"/>', f'<rect x="2" y="2" width="{W - 4}" height="{H - 4}" fill="{PANEL}"/>',
+         f'<rect x="2" y="{H - 6}" width="{W - 4}" height="4" fill="#0b1220"/>']
+    p.append(texto("> VER DETALLES", 16, 13, 2, ACENTO))
+    return svg(W, H, ''.join(p))
+
+
+def dialogo(quien, lineas):
+    """Cuadro de dialogo tipo RPG para la bio."""
+    W = 960
+    H = 70 + len(lineas) * 28 + 24
+    p = [f'<rect width="{W}" height="{H}" fill="{BG}"/>', panel(0, 0, W, H)]
+    nw = ancho(quien, 2) + 28
+    p.append(f'<rect x="24" y="18" width="{nw}" height="30" fill="{ACENTO}"/>')
+    p.append(texto(quien, 38, 26, 2, BG))
+    y = 66
+    for l in lineas:
+        p.append(texto(l, 32, y, 2, TEXTO))
+        y += 28
+    p.append(f'<g class="blink"><rect x="{W - 44}" y="{H - 30}" width="14" height="4" fill="{AMARILLO}"/>'
+             f'<rect x="{W - 42}" y="{H - 26}" width="10" height="4" fill="{AMARILLO}"/>'
+             f'<rect x="{W - 40}" y="{H - 22}" width="6" height="4" fill="{AMARILLO}"/></g>')
+    return svg(W, H, ''.join(p))
+
+
+DETALLES = {
+    1: ("SOFIA", "PLATAFORMA PARA EL CONSULTORIO JURÍDICO UNIVERSITARIO", ACENTO, [
+        "CHATBOT WEB CON IA CONVERSACIONAL MULTIESTADO",
+        "RAG CON OPENAI: BÚSQUEDA SEMÁNTICA, RE-RANKING Y GENERACIÓN",
+        "AGENDAMIENTO COMPLETO POR CHAT",
+        "MULTI-TENANCY CON AISLAMIENTO POR TENANT",
+        "DASHBOARD CON MÉTRICAS Y EXPORTACIÓN PDF / EXCEL",
+        "6 MICROSERVICIOS NODE + 1 FASTAPI * POSTGRES, PGVECTOR, QDRANT"]),
+    2: ("SICOP", "SISTEMA ADMINISTRATIVO PARA CONSULTORIOS JURÍDICOS", AZUL, [
+        "CASOS, CITAS, DOCUMENTOS Y CERTIFICACIONES",
+        "RBAC CON 6 ROLES Y JWT CON REFRESH TOKENS",
+        "PDFS CON VERIFICACIÓN POR QR",
+        "FIRMAS MULTIROL ORDENADAS POR JERARQUÍA",
+        "RECORDATORIOS AUTOMÁTICOS 24 H Y 15 MIN ANTES",
+        "SEMÁFORO DE PLAZOS, AUDITORÍA E INTEGRACIÓN CON SOFIA"]),
+    3: ("APP PSICOLOGÍA", "SALUD MENTAL UNIVERSITARIA CON IA Y APP MÓVIL", '#bc8cff', [
+        "CHATBOT EMOCIONAL CON GPT-4O-MINI + RAG",
+        "COPILOTO CLÍNICO PARA PRACTICANTES DE PSICOLOGÍA",
+        "APP FLUTTER CON GOOGLE SIGN-IN (ANDROID, IOS Y WEB)",
+        "PUSH CON FIREBASE Y MENSAJERÍA CON RABBITMQ",
+        "+10 MICROSERVICIOS NESTJS * MYSQL, REDIS Y MINIO",
+        "TESTS CON JEST, VITEST Y PLAYWRIGHT"]),
+    4: ("KIVO", "PERSONAJES E HISTORIAS CON IA, INSTALABLE COMO PWA", '#f778ba', [
+        "CREADOR DE PERSONAJES POR PASOS, CON SECUNDARIOS Y LORE",
+        "CHAT NARRATIVO CON MEMORIA, VOCES Y RAMAS DE LA HISTORIA",
+        "LOGIN CON GOOGLE Y VERIFICACIÓN POR CÓDIGO",
+        "POSTGRES CON ROW LEVEL SECURITY",
+        "VARIOS IDIOMAS, CATÁLOGO CON BÚSQUEDA Y MODERACIÓN"]),
+    5: ("CONNEXIA", "MENSAJES, LEADS Y VENTAS DE UN NEGOCIO EN UN SOLO LUGAR", '#3fb950', [
+        "WHATSAPP, MESSENGER, INSTAGRAM, CORREO, SMS Y LLAMADAS",
+        "LEADS DESDE META ADS Y TIKTOK ADS CON FLUJOS AUTOMÁTICOS",
+        "PAGOS, CATÁLOGO Y AGENDA DE RESERVAS",
+        "+20 MICROSERVICIOS .NET 9 CON GATEWAY GRAPHQL + GRPC"]),
+    6: ("PYTHONESCAPE", "APRENDE PYTHON JUGANDO: EL JUEGO QUE DESPERTÓ UN SUEÑO", AMARILLO, [
+        "7 ESCENARIOS CONECTADOS CON MINIMAPA",
+        "AUDIO AMBIENTAL POR HABITACIÓN",
+        "PYGAME CON FÍSICA Y COLISIONES",
+        "TESTS CON PYTEST Y ARQUITECTURA SOLID"]),
+}
+
+
 def todo():
     salida = {"hero.svg": hero(), "player.svg": player(), "footer.svg": footer()}
     for clave, titulo, ic in [("perfil", "PERFIL", "corazon"), ("quests", "PROYECTOS", "espada"),
@@ -444,6 +537,16 @@ def todo():
     salida["world-map.svg"] = mapa([("IUDC", "BACKEND + IA"), ("AI ENGINEER", "AGENTES"),
                                     ("FRONTEND", "DISENO Y UI"), ("GAME DEV", "VIDEOJUEGOS"),
                                     ("PROJECT LEAD", "GERENCIA")])
+    for n, (t, d, col, pts) in DETALLES.items():
+        salida[f"detalle-{n}.svg"] = detalle(t, d, pts, col)
+    salida["ver-detalles.svg"] = boton_detalles()
+    salida["bio.svg"] = dialogo("SEBASTIÁN", [
+        "DESARROLLADOR DE SOFTWARE EN LA INSTITUCIÓN UNIVERSITARIA DE",
+        "COLOMBIA Y ESTUDIANTE DE INGENIERÍA DE SOFTWARE.",
+        "CONSTRUYO PLATAFORMAS REALES CON IA: CHATBOTS, SISTEMAS PARA",
+        "CONSULTORIOS Y HERRAMIENTAS PARA ESTUDIANTES.",
+        "ME APASIONAN EL DISEÑO, EL FRONTEND Y LOS VIDEOJUEGOS,",
+        "Y HACIA ALLÁ VOY."])
     return salida
 
 
