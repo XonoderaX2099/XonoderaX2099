@@ -322,18 +322,12 @@
 
 ## 🎯 VISION & ROADMAP
 
-```
-╔══════════════════════════════════════════════════════════════════╗
-║                                                                  ║
-║  "Aunque el camino me llevó al backend y los sistemas            ║
-║   distribuidos, mi corazón siempre estuvo en el diseño,          ║
-║   el frontend y los videojuegos."                                ║
-║                                                                  ║
-║  Hoy construyo plataformas reales con IA para mi universidad.    ║
-║  Mañana, quiero crear mundos. Y liderar proyectos épicos.        ║
-║                                                                  ║
-╚══════════════════════════════════════════════════════════════════╝
-```
+<div align="center">
+
+**Hoy construyo plataformas reales con IA para la Institución Universitaria de Colombia.**<br/>
+Me apasionan el diseño, el frontend y los videojuegos, y hacia allá voy.
+
+</div>
 
 <div align="center">
 
