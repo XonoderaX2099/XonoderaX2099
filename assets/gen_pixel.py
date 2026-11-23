@@ -584,24 +584,20 @@ def todo():
     ])
     salida["achievements.svg"] = certificaciones([
         ("ANTHROPIC", "IA, CLAUDE Y MODEL CONTEXT PROTOCOL", '#bc8cff', [
-            ("AI FLUENCY: FRAMEWORK & FOUNDATIONS", ""), ("AI FLUENCY FOR STUDENTS", ""),
-            ("AI FLUENCY FOR EDUCATORS", ""), ("AI FLUENCY FOR NONPROFITS", ""),
-            ("TEACHING THE AI FLUENCY FRAMEWORK", ""), ("CLAUDE 101", ""),
-            ("CLAUDE CODE IN ACTION", "MAR 2026"), ("INTRODUCTION TO AGENT SKILLS", ""),
+            ("AI FLUENCY: FRAMEWORK & FOUNDATIONS", "MAR 2026"), ("AI FLUENCY FOR STUDENTS", "MAR 2026"),
+            ("AI FLUENCY FOR EDUCATORS", "MAR 2026"), ("AI FLUENCY FOR NONPROFITS", "MAR 2026"),
+            ("TEACHING THE AI FLUENCY FRAMEWORK", "MAR 2026"), ("CLAUDE 101", "MAR 2026"),
+            ("CLAUDE CODE IN ACTION", "MAR 2026"), ("INTRODUCTION TO AGENT SKILLS", "MAR 2026"),
             ("INTRODUCTION TO MODEL CONTEXT PROTOCOL", "MAR 2026"), ("MCP: ADVANCED TOPICS", "MAR 2026"),
             ("CLAUDE WITH GOOGLE VERTEX AI", "MAR 2026"), ("CLAUDE WITH AMAZON BEDROCK", "MAR 2026")]),
         ("CISCO NETWORKING ACADEMY", "A TRAVÉS DE LA INSTITUCIÓN UNIVERSITARIA DE COLOMBIA", '#f85149', [
             ("LINUX ESSENTIALS", "OCT 2026"), ("HACKER ÉTICO (ETHICAL HACKER)", "OCT 2026")]),
-        ("INGENIERÍA DE SOFTWARE", "FORMACIÓN COMPLEMENTARIA", AZUL, [
-            ("ARQUITECTURA DE SOFTWARE", ""), ("ESTRUCTURAS DE DATOS PARA IA", ""),
-            ("PATRONES DE DISEÑO", ""), ("FRONT-END DEVELOPMENT", "")]),
     ])
     salida["world-map.svg"] = mapa([("IUDC", "BACKEND + IA"), ("AI ENGINEER", "AGENTES"),
                                     ("FRONTEND", "DISENO Y UI"), ("GAME DEV", "VIDEOJUEGOS"),
                                     ("PROJECT LEAD", "GERENCIA")])
     for n, (t, d, col, pts) in DETALLES.items():
         salida[f"detalle-{n}.svg"] = detalle(t, d, pts, col)
-    salida["ver-detalles.svg"] = boton_detalles()
     salida["bio.svg"] = dialogo("SEBASTIÁN", [
         "DESARROLLADOR DE SOFTWARE EN LA INSTITUCIÓN UNIVERSITARIA DE",
         "COLOMBIA Y ESTUDIANTE DE INGENIERÍA DE SOFTWARE.",
