@@ -115,15 +115,6 @@ Aprende Python jugando. El videojuego que despertó un gran sueño.
 
 <img src="assets/inventory.svg" width="100%" alt="Inventario de tecnologias: backend, frontend y mobile, datos, devops e IA"/>
 
-<img src="assets/banner-stats.svg" width="100%" alt="Battle stats"/>
-
-<div align="center">
-
-<img height="170" src="https://github-readme-stats.vercel.app/api?username=XonoderaX2099&show_icons=true&theme=tokyonight&include_all_commits=true&count_private=true&hide_border=true&bg_color=0a0a1a&title_color=00BFFF&icon_color=1E90FF&text_color=87CEEB&ring_color=00BFFF&cache_seconds=1800" alt="Estadisticas de GitHub"/>
-<img height="170" src="https://github-readme-stats.vercel.app/api/top-langs/?username=XonoderaX2099&layout=compact&langs_count=8&theme=tokyonight&hide_border=true&bg_color=0a0a1a&title_color=00BFFF&text_color=87CEEB&cache_seconds=1800" alt="Lenguajes mas usados"/>
-
-</div>
-
 <img src="assets/banner-logros.svg" width="100%" alt="Achievements"/>
 
 <img src="assets/achievements.svg" width="100%" alt="18 certificaciones: 12 de Anthropic (AI Fluency, Claude, MCP), 4 de ingenieria de software y 2 de Cisco Networking Academy (Linux Essentials y Hacker Etico)"/>

@@ -380,8 +380,8 @@ def mapa(nodos):
     for _ in range(140):
         x, y = random.randrange(0, W, 8), random.randrange(0, H, 8)
         p.append(f'<rect x="{x}" y="{y}" width="8" height="8" fill="{random.choice(["#14532d", "#166534", "#15803d"])}"/>')
-    paso = (W - 160) // (len(nodos) - 1)
-    pts = [(80 + i * paso, 150 + (30 if i % 2 else -10)) for i in range(len(nodos))]
+    paso = (W - 220) // (len(nodos) - 1)
+    pts = [(100 + i * paso, 150 + (30 if i % 2 else -10)) for i in range(len(nodos))]
     for (x1, y1), (x2, y2) in zip(pts, pts[1:]):
         for t in range(0, 21):
             x = x1 + (x2 - x1) * t / 20
@@ -408,7 +408,6 @@ def todo():
                                    ("quests", "QUEST LOG", "espada", '#00e5ff'),
                                    ("side", "SIDE QUESTS", "pergamino", '#fef3c7'),
                                    ("inventario", "INVENTORY", "cofre", '#facc15'),
-                                   ("stats", "BATTLE STATS", "rayo", '#00e5ff'),
                                    ("logros", "ACHIEVEMENTS", "trofeo", '#facc15'),
                                    ("mapa", "NEXT LEVELS", "mapa", '#84cc16')]:
         salida[f"banner-{clave}.svg"] = banner(titulo, ic, col)
