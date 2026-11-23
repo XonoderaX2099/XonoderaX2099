@@ -93,7 +93,7 @@
 
 <img src="assets/banner-logros.svg" width="100%" alt="Certificaciones"/>
 
-Certificaciones: 12 de Anthropic de marzo de 2026 (AI Fluency, Claude, Agent Skills, Model Context Protocol, Vertex AI y Bedrock) y 2 de Cisco Networking Academy de octubre de 2026 (Linux Essentials y Hacker Ético)"/>
+<img src="assets/achievements.svg" width="100%" alt="Certificaciones: 12 de Anthropic de marzo de 2026 (AI Fluency, Claude, Agent Skills, Model Context Protocol, Vertex AI y Bedrock) y 2 de Cisco Networking Academy de octubre de 2026 (Linux Essentials y Hacker Ético)"/>
 
 <img src="assets/banner-mapa.svg" width="100%" alt="Roadmap"/>
 
